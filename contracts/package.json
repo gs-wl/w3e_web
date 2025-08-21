@@ -1,0 +1,33 @@
+{
+  "name": "rwa-defi-contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for RWA DeFi Platform",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:rwa": "hardhat test test/RwaToken.test.js",
+    "test:staking": "hardhat test test/Staking.test.js",
+    "deploy": "hardhat run scripts/deploy.js",
+    "deploy:rwa": "hardhat run scripts/deploy-rwa-token.js",
+    "deploy:staking": "hardhat run scripts/deploy-staking.js",
+    "deploy:sepolia": "hardhat run scripts/deploy-sepolia.js --network sepolia",
+    "test:sepolia": "hardhat run scripts/test-sepolia-deployment.js --network sepolia",
+    "interact": "hardhat run scripts/interact.js",
+    "verify-deployment": "hardhat run scripts/verify-deployment.js",
+    "verify": "hardhat verify",
+    "clean": "hardhat clean",
+    "node": "hardhat node"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "@typechain/ethers-v6": "^0.5.0",
+    "@typechain/hardhat": "^9.1.0",
+    "hardhat": "^2.19.0",
+    "typechain": "^8.3.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0",
+    "dotenv": "^17.2.1"
+  }
+}
