@@ -21,7 +21,21 @@ import GasPriceDisplay from './gas-price-display';
 import { AdminAppPage } from './admin-app-page';
 import { AdminGuard } from './admin-guard';
 
+/* ---------- Dummy data kept identical ---------- */
 
+interface MenuItem {
+  id: string;
+  label: string;
+  icon: any;
+  active?: boolean;
+  badge?: string;
+  adminOnly?: boolean; // This is the key addition
+}
+
+interface MenuSection {
+  category: string;
+  items: MenuItem[];
+}
 
 /* ---------- Dummy data kept identical ---------- */
 
@@ -46,7 +60,7 @@ const tokenizedAssets = [
   { id: 4, symbol: 'BATT-NET', name: 'Grid Battery Network', type: 'Battery Storage', tvl: '$6.3M', apy: '11.9', price: '$987.45', change24h: '+5.7%', marketCap: '$18.7M', liquidity: '$743K', chain: 'base', verified: true, yieldType: 'Auto-compound', nextReward: '12 hours', holders: 734 }
 ];
 
-const menuItems = [
+const menuItems: MenuSection[] = [
   { category: 'Latest', items: [
       { id: 'market-overview', label: 'Dashboard', icon: BarChart3, active: true },
       { id: 'news', label: 'News', icon: FileText },
