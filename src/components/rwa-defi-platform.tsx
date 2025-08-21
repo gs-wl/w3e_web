@@ -9,6 +9,7 @@ import {
   ArrowUpDown, Droplets, Bell, Lock, Target, Briefcase, FileText,
   Database, GitBranch, Network, Moon, Home
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useNewsCache } from '@/hooks/useNewsCache';
 import { useAdmin } from '@/hooks/useAdmin';
@@ -26,10 +27,10 @@ import { AdminGuard } from './admin-guard';
 interface MenuItem {
   id: string;
   label: string;
-  icon: any;
+  icon: LucideIcon;        // <- corrected type
   active?: boolean;
   badge?: string;
-  adminOnly?: boolean; // This is the key addition
+  adminOnly?: boolean;     // <- optional flag
 }
 
 interface MenuSection {
@@ -112,7 +113,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, setUserToggledSidebar, activeTab
     if (pathname === '/portfolio') return 'portfolio';
     const segments = pathname.split('/');
     return segments[segments.length - 1] || 'market-overview';
-  };
+    };
   
   const currentActiveTab = getActiveTabFromPath();
   
