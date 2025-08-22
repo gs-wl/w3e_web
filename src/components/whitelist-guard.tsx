@@ -6,6 +6,7 @@ import { useWhitelist } from '@/hooks/useWhitelist';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { AlertTriangle, Home, UserPlus } from 'lucide-react';
+import { WalletConnectButton } from './wallet-connect-button';
 
 interface WhitelistGuardProps {
   children: React.ReactNode;
@@ -53,13 +54,7 @@ export function WhitelistGuard({ children }: WhitelistGuardProps) {
             <>
               <p className="text-gray-600 mb-6">You must connect your wallet and be whitelisted to access this application.</p>
               <div className="space-y-3">
-                <Button 
-                  onClick={() => window.open('https://w3-energy.org', '_blank')}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white"
-                >
-                  <Home className="w-4 h-4 mr-2" />
-                  Visit W3-Energy.org
-                </Button>
+                <WalletConnectButton />
               </div>
             </>
           ) : isConnectedButNotWhitelisted ? (
@@ -76,20 +71,19 @@ export function WhitelistGuard({ children }: WhitelistGuardProps) {
                   <UserPlus className="w-4 h-4 mr-2" />
                   Join Whitelist
                 </Button>
-                <Button 
-                  onClick={() => window.open('https://w3-energy.org', '_blank')}
-                  variant="outline"
-                  className="w-full border-gray-300 text-gray-700 hover:bg-gray-50"
-                >
-                  <Home className="w-4 h-4 mr-2" />
-                  Visit W3-Energy.org
-                </Button>
               </div>
             </>
           ) : null}
           
           <p className="text-xs text-gray-400 mt-4">
-            Need help? Contact our support team.
+            Not whitelisted yet?{' '}
+            <button 
+              onClick={() => router.push('/whitelist')}
+              className="text-green-600 hover:text-green-700 underline"
+            >
+              Click here to apply
+            </button>
+            .
           </p>
         </div>
       </div>
