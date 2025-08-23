@@ -1,13 +1,13 @@
-# RWA.defi Project Setup Guide
+# W3E.defi Project Setup Guide
 
 ## 🎉 Project Successfully Created!
 
-Your RWA DeFi Platform is now fully set up with a complete Next.js 14 project structure. Here's what has been created for you:
+Your W3E DeFi Platform is now fully set up with a complete Next.js 14 project structure. Here's what has been created for you:
 
 ## 📁 Project Structure
 
 ```
-rwa-defi-platform/
+w3e-defi-platform/
 ├── 📁 app/                     # Next.js 14 App Router
 │   ├── globals.css            # Global styles & Tailwind
 │   ├── layout.tsx             # Root layout with metadata
@@ -18,7 +18,7 @@ rwa-defi-platform/
 │   │   ├── 📁 layout/        # Layout components (Sidebar, etc.)
 │   │   ├── 📁 ui/            # Base UI components (Button, Card)
 │   │   ├── index.ts          # Component exports
-│   │   └── rwa-defi-platform.tsx # Main platform component
+│   │   └── w3e-defi-platform.tsx # Main platform component
 │   ├── 📁 lib/               # Utilities and configurations
 │   │   ├── constants.ts      # App constants and config
 │   │   └── utils.ts          # Helper functions

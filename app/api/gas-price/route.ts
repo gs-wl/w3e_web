@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Get API keys from environment variables
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || 'YourApiKeyToken';
+const BSCSCAN_API_KEY = process.env.BSCSCAN_API_KEY || 'YourApiKeyToken';
+const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || 'YourApiKeyToken';
+const ARBISCAN_API_KEY = process.env.ARBISCAN_API_KEY || 'YourApiKeyToken';
+const OPTIMISM_API_KEY = process.env.OPTIMISM_API_KEY || 'YourApiKeyToken';
+const BASESCAN_API_KEY = process.env.BASESCAN_API_KEY || 'YourApiKeyToken';
+
 // Gas price API endpoints for different networks
 const GAS_PRICE_APIS = {
-  ethereum: 'https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=YourApiKeyToken',
-  bsc: 'https://api.bscscan.com/api?module=gastracker&action=gasoracle&apikey=YourApiKeyToken',
-  polygon: 'https://api.polygonscan.com/api?module=gastracker&action=gasoracle&apikey=YourApiKeyToken',
-  arbitrum: 'https://api.arbiscan.io/api?module=gastracker&action=gasoracle&apikey=YourApiKeyToken',
-  optimism: 'https://api-optimistic.etherscan.io/api?module=gastracker&action=gasoracle&apikey=YourApiKeyToken',
-  base: 'https://api.basescan.org/api?module=gastracker&action=gasoracle&apikey=YourApiKeyToken'
+  ethereum: `https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${ETHERSCAN_API_KEY}`,
+  bsc: `https://api.bscscan.com/api?module=gastracker&action=gasoracle&apikey=${BSCSCAN_API_KEY}`,
+  polygon: `https://api.polygonscan.com/api?module=gastracker&action=gasoracle&apikey=${POLYGONSCAN_API_KEY}`,
+  arbitrum: `https://api.arbiscan.io/api?module=gastracker&action=gasoracle&apikey=${ARBISCAN_API_KEY}`,
+  optimism: `https://api-optimistic.etherscan.io/api?module=gastracker&action=gasoracle&apikey=${OPTIMISM_API_KEY}`,
+  base: `https://api.basescan.org/api?module=gastracker&action=gasoracle&apikey=${BASESCAN_API_KEY}`
 };
 
 // Fallback gas prices (in Gwei) when API fails
@@ -63,24 +71,38 @@ export async function GET(request: NextRequest) {
 
     try {
       // Try to fetch from the respective blockchain explorer API
-      // Note: For production, you should use actual API keys
-      const response = await fetch(GAS_PRICE_APIS[networkKey].replace('YourApiKeyToken', 'demo'), {
-        next: { revalidate: 30 } // Cache for 30 seconds
+      const apiUrl = GAS_PRICE_APIS[networkKey];
+      console.log(`Fetching gas price for ${network} from: ${apiUrl.replace(/apikey=.*/, 'apikey=***')}`);
+      
+      const response = await fetch(apiUrl, {
+        next: { revalidate: 30 }, // Cache for 30 seconds
+        headers: {
+          'User-Agent': 'w3energy-defi-platform/1.0'
+        }
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data.status === '1' && data.result) {
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log(`API response for ${network}:`, JSON.stringify(data, null, 2));
+
+      // Check if the response has the expected structure
+      if (data && data.status === '1' && data.result) {
+        // Validate that all required fields exist
+        const result = data.result;
+        if (result.SafeGasPrice && result.ProposeGasPrice && result.FastGasPrice) {
           gasData = {
-            safe: data.result.SafeGasPrice,
-            standard: data.result.ProposeGasPrice,
-            fast: data.result.FastGasPrice
+            safe: result.SafeGasPrice,
+            standard: result.ProposeGasPrice,
+            fast: result.FastGasPrice
           };
         } else {
-          throw new Error('Invalid API response');
+          throw new Error(`Invalid API response structure: missing gas price fields. Got: ${JSON.stringify(result)}`);
         }
       } else {
-        throw new Error('API request failed');
+        throw new Error(`Invalid API response: status=${data?.status}, message=${data?.message || 'Unknown error'}`);
       }
     } catch (error) {
       console.warn(`Gas price API failed for ${network}, using fallback:`, error);

@@ -1,8 +1,8 @@
-# RWA DeFi Platform Component Guide
+# W3E DeFi Platform Component Guide
 
 ## Overview
 
-This guide provides comprehensive documentation for all components in the RWA DeFi Platform. It serves as a reference for developers working with the component library.
+This guide provides comprehensive documentation for all components in the W3E DeFi Platform. It serves as a reference for developers working with the component library.
 
 ## Table of Contents
 
@@ -47,18 +47,18 @@ components/
 
 ### 1. Core Platform Components
 
-#### Web3RWAPlatform
+#### Web3W3EPlatform
 - **Purpose**: Main application wrapper
-- **Location**: `rwa-defi-platform.tsx`
+- **Location**: `w3e-defi-platform.tsx`
 - **Props**: See `Web3ProviderProps` in types.ts
 - **Usage**: Root component for the entire platform
 
 ```tsx
-import { Web3RWAPlatform } from '@/components';
+import { Web3W3EPlatform } from '@/components';
 
-<Web3RWAPlatform>
+<Web3W3EPlatform>
   {/* Your app content */}
-</Web3RWAPlatform>
+</Web3W3EPlatform>
 ```
 
 #### Web3Provider

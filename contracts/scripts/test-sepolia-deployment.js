@@ -4,7 +4,7 @@ async function main() {
   console.log("🧪 Testing Sepolia Deployment...");
   
   // Contract addresses from deployment
-  const RWA_TOKEN_ADDRESS = "0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484";
+  const W3E_TOKEN_ADDRESS = "0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484";
   const STAKING_ADDRESS = "0x3c122D7571F76a32bE8dbC33255E97156f3A9576";
   
   const [deployer] = await ethers.getSigners();
@@ -20,19 +20,19 @@ async function main() {
 
   try {
     // Get contract instances
-    const rwaToken = await ethers.getContractAt("RWAToken", RWA_TOKEN_ADDRESS);
+    const w3eToken = await ethers.getContractAt("W3EToken", W3E_TOKEN_ADDRESS);
     const stakingContract = await ethers.getContractAt("MultiPoolStaking", STAKING_ADDRESS);
     
     console.log("✅ Contract instances created successfully");
     
-    // Test RWA Token
-    console.log("\n=== 🪙 RWA Token Tests ===");
+    // Test W3E Token
+    console.log("\n=== 🪙 W3E Token Tests ===");
     
-    const tokenName = await rwaToken.name();
-    const tokenSymbol = await rwaToken.symbol();
-    const totalSupply = await rwaToken.totalSupply();
-    const deployerBalance = await rwaToken.balanceOf(deployer.address);
-    const decimals = await rwaToken.decimals();
+    const tokenName = await w3eToken.name();
+    const tokenSymbol = await w3eToken.symbol();
+    const totalSupply = await w3eToken.totalSupply();
+    const deployerBalance = await w3eToken.balanceOf(deployer.address);
+    const decimals = await w3eToken.decimals();
     
     console.log("✅ Name:", tokenName);
     console.log("✅ Symbol:", tokenSymbol);
@@ -45,11 +45,11 @@ async function main() {
     const transferAmount = ethers.parseEther("1000");
     const recipient = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"; // Test address
     
-    console.log("Transferring", ethers.formatEther(transferAmount), "RWA to", recipient);
-    const transferTx = await rwaToken.transfer(recipient, transferAmount);
+    console.log("Transferring", ethers.formatEther(transferAmount), "W3E to", recipient);
+    const transferTx = await w3eToken.transfer(recipient, transferAmount);
     await transferTx.wait();
     
-    const recipientBalance = await rwaToken.balanceOf(recipient);
+    const recipientBalance = await w3eToken.balanceOf(recipient);
     console.log("✅ Transfer successful! Recipient balance:", ethers.formatEther(recipientBalance));
     
     // Test Staking Contract
@@ -79,12 +79,12 @@ async function main() {
     console.log("\n--- Testing Staking ---");
     const stakeAmount = ethers.parseEther("500");
     
-    console.log("Approving staking contract to spend", ethers.formatEther(stakeAmount), "RWA");
-    const approveTx = await rwaToken.approve(STAKING_ADDRESS, stakeAmount);
+    console.log("Approving staking contract to spend", ethers.formatEther(stakeAmount), "W3E");
+    const approveTx = await w3eToken.approve(STAKING_ADDRESS, stakeAmount);
     await approveTx.wait();
     console.log("✅ Approval successful");
     
-    console.log("Staking", ethers.formatEther(stakeAmount), "RWA in pool 0");
+    console.log("Staking", ethers.formatEther(stakeAmount), "W3E in pool 0");
     const stakeTx = await stakingContract.stake(0, stakeAmount);
     await stakeTx.wait();
     console.log("✅ Staking successful");
@@ -110,7 +110,7 @@ async function main() {
     
     console.log("\n🎉 All tests passed successfully!");
     console.log("\n=== 📊 Test Summary ===");
-    console.log("✅ RWA Token: Functional");
+    console.log("✅ W3E Token: Functional");
     console.log("✅ Staking Contract: Functional");
     console.log("✅ Token Transfers: Working");
     console.log("✅ Staking Operations: Working");
@@ -118,7 +118,7 @@ async function main() {
     console.log("✅ Contract Integration: Working");
     
     console.log("\n=== 🔗 Etherscan Links ===");
-    console.log("RWA Token:", `https://sepolia.etherscan.io/address/${RWA_TOKEN_ADDRESS}`);
+    console.log("W3E Token:", `https://sepolia.etherscan.io/address/${W3E_TOKEN_ADDRESS}`);
     console.log("Staking Contract:", `https://sepolia.etherscan.io/address/${STAKING_ADDRESS}`);
     console.log("Your Address:", `https://sepolia.etherscan.io/address/${deployer.address}`);
     

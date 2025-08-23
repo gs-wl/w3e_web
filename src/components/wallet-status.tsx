@@ -31,7 +31,7 @@ export function WalletStatus() {
         const user = userInfo.data as any;
         const claimed = Number(formatEther(user.totalRewardsClaimed || 0n));
         const pending = Number(formatEther(pendingRewards.data as bigint));
-        const totalEarnings = (claimed + pending) * 1.0; // Convert to USD (assuming 1 RWA = $1)
+        const totalEarnings = (claimed + pending) * 1.0; // Convert to USD (assuming 1 W3E = $1)
         
         // Only update if the value has changed
         if (lastEarningsRef.current !== totalEarnings) {
@@ -93,7 +93,7 @@ export function WalletStatus() {
       if (pool.isActive && pool.totalStaked) {
         // Convert totalStaked from wei to tokens
         const stakedAmount = Number(formatEther(pool.totalStaked));
-        // Assuming 1 RWA token = $1 USD for now
+        // Assuming 1 W3E token = $1 USD for now
         // In a real implementation, you'd fetch the actual token price
         totalTVL += stakedAmount * 1.0;
         activePoolCount++;

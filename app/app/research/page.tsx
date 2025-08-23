@@ -1,12 +1,12 @@
 'use client'
 
-import { Web3RWAPlatform } from '@/components'
+import { Web3W3EPlatform } from '@/components'
 import { WhitelistGuard } from '@/components/whitelist-guard'
 
 export default function ResearchRoute() {
   return (
     <WhitelistGuard>
-      <Web3RWAPlatform activeTab="research" />
+      <Web3W3EPlatform activeTab="research" />
     </WhitelistGuard>
   )
 }

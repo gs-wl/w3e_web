@@ -1,16 +1,16 @@
 const { ethers } = require("hardhat");
 
 async function main() {
-  console.log("=== Deploying RWA Token ===");
+  console.log("=== Deploying W3E Token ===");
   
   const [deployer] = await ethers.getSigners();
   console.log("Deploying with account:", deployer.address);
   console.log("Account balance:", ethers.formatEther(await deployer.provider.getBalance(deployer.address)));
 
-  const RWAToken = await ethers.getContractFactory("RWAToken");
+  const W3EToken = await ethers.getContractFactory("W3EToken");
   
-  const tokenName = "RWA Token";
-  const tokenSymbol = "RWA";
+  const tokenName = "W3E Token";
+  const tokenSymbol = "W3E";
   const owner = deployer.address;
   const feeCollector = deployer.address;
   
@@ -20,8 +20,8 @@ async function main() {
   console.log("- Owner:", owner);
   console.log("- Fee Collector:", feeCollector);
   
-  const rwaToken = await RWAToken.deploy(tokenName, tokenSymbol, owner, feeCollector);
-  await rwaToken.waitForDeployment();
+  const w3eToken = await W3EToken.deploy(tokenName, tokenSymbol, owner, feeCollector);
+  await w3eToken.waitForDeployment();
   
   const tokenAddress = await rwaToken.getAddress();
   console.log("\n✅ RWA Token deployed to:", tokenAddress);

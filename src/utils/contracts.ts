@@ -2,7 +2,7 @@ import { parseEther, formatEther, type Address } from 'viem';
 import { getContractAddress, getBlockExplorerUrl, getTransactionUrl } from '@/config/contracts';
 
 // Contract addresses
-export const RWA_TOKEN_ADDRESS = getContractAddress('rwaToken') as Address;
+export const W3E_TOKEN_ADDRESS = getContractAddress('w3eToken') as Address;
 export const STAKING_CONTRACT_ADDRESS = getContractAddress('stakingContract') as Address;
 
 // Common contract interaction utilities
@@ -105,13 +105,13 @@ export const contractUtils = {
   },
 
   // Format token symbol with amount
-  formatTokenDisplay: (amount: string | number, symbol: string = 'RWA'): string => {
+  formatTokenDisplay: (amount: string | number, symbol: string = 'W3E'): string => {
     const formattedAmount = typeof amount === 'string' ? amount : amount.toString();
     return `${parseFloat(formattedAmount).toLocaleString()} ${symbol}`;
   },
 
   // Format token display with more decimal places for small amounts (rewards)
-  formatRewardDisplay: (amount: string | number, symbol: string = 'RWA'): string => {
+  formatRewardDisplay: (amount: string | number, symbol: string = 'W3E'): string => {
     const formattedAmount = typeof amount === 'string' ? amount : amount.toString();
     const numAmount = parseFloat(formattedAmount);
     
@@ -169,7 +169,7 @@ export const contractUtils = {
     }
 
     if (amountNum < minStakeNum) {
-      return { isValid: false, error: `Minimum stake amount is ${minStakeNum} RWA` };
+      return { isValid: false, error: `Minimum stake amount is ${minStakeNum} W3E` };
     }
 
     if (currentStakedNum + amountNum > maxStakeNum) {

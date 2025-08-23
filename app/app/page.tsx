@@ -1,12 +1,12 @@
 'use client'
 
-import { Web3RWAPlatform } from '@/components'
+import { Web3W3EPlatform } from '@/components'
 import { WhitelistGuard } from '@/components/whitelist-guard'
 
 export default function AppPage() {
   return (
     <WhitelistGuard>
-      <Web3RWAPlatform activeTab="market-overview" />
+      <Web3W3EPlatform activeTab="market-overview" />
     </WhitelistGuard>
   )
 }

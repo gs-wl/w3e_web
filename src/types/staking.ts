@@ -48,7 +48,7 @@ export interface FilterConfig {
   searchTerm?: string;
 }
 
-// Amount range definitions (in RWA tokens)
+// Amount range definitions (in W3E tokens)
 export const AMOUNT_RANGES = {
   small: { min: 0, max: 1000 },
   medium: { min: 1000, max: 10000 },

@@ -41,7 +41,7 @@ interface MenuSection {
 /* ---------- Dummy data kept identical ---------- */
 
 const assetTypes = [
-  { id: 'all', label: 'All RWAs', icon: Globe },
+  { id: 'all', label: 'All W3Es', icon: Globe },
   { id: 'solar', label: 'Solar', icon: Sun },
   { id: 'wind', label: 'Wind', icon: Wind },
   { id: 'uranium', label: 'Uranium', icon: Zap },
@@ -62,33 +62,43 @@ const tokenizedAssets = [
 ];
 
 const menuItems: MenuSection[] = [
-  { category: 'Latest', items: [
+  {
+    category: 'Latest', items: [
       { id: 'market-overview', label: 'Dashboard', icon: BarChart3, active: true },
       { id: 'news', label: 'News', icon: FileText },
       { id: 'invest', label: 'Invest', icon: Target, badge: 'NEW' }
-  ]},
-  { category: 'Asset Classes', items: [
+    ]
+  },
+  {
+    category: 'Asset Classes', items: [
       { id: 'tokenized-assets', label: 'Tokenized Assets', icon: Coins },
       { id: 'defi-pools', label: 'DeFi Pools', icon: Droplets },
       { id: 'yield-farming', label: 'Yield Farming', icon: Leaf },
       { id: 'liquidity-mining', label: 'Liquidity Mining', icon: Activity },
       { id: 'staking', label: 'Staking', icon: Lock },
       { id: 'derivatives', label: 'Derivatives', icon: TrendingUp, badge: 'SOON' }
-  ]},
-  { category: 'Trading & DeFi', items: [
+    ]
+  },
+  {
+    category: 'Trading & DeFi', items: [
       { id: 'dex', label: 'DEX Trading', icon: ArrowUpDown },
       { id: 'order-book', label: 'Order Book', icon: BarChart3 },
       { id: 'cross-chain', label: 'Bridge', icon: GitBranch },
       { id: 'portfolio', label: 'Portfolio', icon: Briefcase }
-  ]},
-  { category: 'Analytics', items: [
+    ]
+  },
+  {
+    category: 'Analytics', items: [
       { id: 'research', label: 'Research', icon: Database },
       { id: 'impact', label: 'ESG Impact', icon: Leaf },
       { id: 'governance', label: 'Governance', icon: Users }
-  ]},
-  { category: 'Administration', items: [
+    ]
+  },
+  {
+    category: 'Administration', items: [
       { id: 'admin', label: 'Admin Panel', icon: Shield, adminOnly: true }
-  ]}
+    ]
+  }
 ];
 
 /* ---------- helpers ---------- */
@@ -106,68 +116,68 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen, setUserToggledSidebar, activeTab, handleTabChange }: SidebarProps) => {
   const pathname = usePathname();
   const { isAdmin } = useAdmin();
-  
+
   // Determine active tab from pathname
   const getActiveTabFromPath = () => {
     if (pathname === '/app') return 'market-overview';
     if (pathname === '/portfolio') return 'portfolio';
     const segments = pathname.split('/');
     return segments[segments.length - 1] || 'market-overview';
-    };
-  
+  };
+
   const currentActiveTab = getActiveTabFromPath();
-  
+
   // Filter menu items based on admin status
   const filteredMenuItems = menuItems.map(section => ({
     ...section,
     items: section.items.filter(item => !item.adminOnly || isAdmin)
   })).filter(section => section.items.length > 0);
-  
+
   return (
-  <aside className={`fixed left-0 top-0 h-full w-80 bg-white dark:bg-gray-900 shadow-xl z-50 transform transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:shadow-none lg:border-r lg:border-gray-200 dark:lg:border-gray-800`}>
-    <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
-      <div className="flex items-center gap-3">
-        <div className="p-1 rounded-lg">
-          <Image
-            src="/logo/logo.png"
-            alt="W3-Energy Logo"
-            width={72}
-            height={56}
-            className="h-16 w-18"
-          />
-        </div>
-        <div>
-          <h1 className="text-xl font-bold text-gray-900 dark:text-white">W3-Energy</h1>
-          <p className="text-xs text-gray-500 dark:text-gray-400">Real World Assets</p>
-        </div>
-      </div>
-      <button onClick={() => { setSidebarOpen(false); setUserToggledSidebar(true); }} className="lg:hidden p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded" aria-label="Close sidebar"><X className="w-5 h-5 text-gray-700 dark:text-gray-300" /></button>
-    </div>
-    <nav className="overflow-y-auto h-full pb-20">
-      {filteredMenuItems.map(section => (
-        <div key={section.category} className="p-4">
-          <h3 className="text-sm font-medium text-gray-400 dark:text-gray-500 uppercase mb-3">{section.category}</h3>
-          <div className="space-y-1">
-            {section.items.map(item => {
-              const Icon = item.icon;
-              return (
-                <button key={item.id} onClick={() => handleTabChange(item.id)} className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all ${ currentActiveTab === item.id ? 'bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800'}`}>
-                  <Icon className="w-4 h-4" />
-                  <span className="flex-1">{item.label}</span>
-                  {item.badge && <span className={`px-2 py-1 text-xs rounded-full ${item.badge === 'NEW' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>{item.badge}</span>}
-                </button>
-              );
-            })}
+    <aside className={`fixed left-0 top-0 h-full w-80 bg-white dark:bg-gray-900 shadow-xl z-50 transform transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:shadow-none lg:border-r lg:border-gray-200 dark:lg:border-gray-800`}>
+      <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="p-1 rounded-lg">
+            <Image
+              src="/logo/logo.png"
+              alt="W3-Energy Logo"
+              width={72}
+              height={56}
+              className="h-16 w-18"
+            />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-gray-900 dark:text-white">W3-Energy</h1>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Real World Assets</p>
           </div>
         </div>
-      ))}
-      <div className="p-4 mx-4 mb-4 bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-lg dark:bg-gradient-to-r dark:from-orange-900 dark:to-yellow-900 dark:border-orange-700">
-        <h4 className="font-semibold text-orange-900 dark:text-yellow-400 mb-2">List Your Assets</h4>
-        <p className="text-sm text-orange-700 dark:text-yellow-300 mb-3">Tokenize and list your real-world assets</p>
-        <button className="w-full bg-gradient-to-r from-orange-500 to-yellow-500 text-white py-2 px-4 rounded-lg font-medium text-sm hover:from-orange-600 hover:to-yellow-600 transition-all">Get Started</button>
+        <button onClick={() => { setSidebarOpen(false); setUserToggledSidebar(true); }} className="lg:hidden p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded" aria-label="Close sidebar"><X className="w-5 h-5 text-gray-700 dark:text-gray-300" /></button>
       </div>
-    </nav>
-  </aside>
+      <nav className="overflow-y-auto h-full pb-20">
+        {filteredMenuItems.map(section => (
+          <div key={section.category} className="p-4">
+            <h3 className="text-sm font-medium text-gray-400 dark:text-gray-500 uppercase mb-3">{section.category}</h3>
+            <div className="space-y-1">
+              {section.items.map(item => {
+                const Icon = item.icon;
+                return (
+                  <button key={item.id} onClick={() => handleTabChange(item.id)} className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-all ${currentActiveTab === item.id ? 'bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800'}`}>
+                    <Icon className="w-4 h-4" />
+                    <span className="flex-1">{item.label}</span>
+                    {item.badge && <span className={`px-2 py-1 text-xs rounded-full ${item.badge === 'NEW' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>{item.badge}</span>}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+        <div className="p-4 mx-4 mb-4 bg-gradient-to-r from-orange-50 to-yellow-50 border border-orange-200 rounded-lg dark:bg-gradient-to-r dark:from-orange-900 dark:to-yellow-900 dark:border-orange-700">
+          <h4 className="font-semibold text-orange-900 dark:text-yellow-400 mb-2">List Your Assets</h4>
+          <p className="text-sm text-orange-700 dark:text-yellow-300 mb-3">Tokenize and list your real-world assets</p>
+          <button className="w-full bg-gradient-to-r from-orange-500 to-yellow-500 text-white py-2 px-4 rounded-lg font-medium text-sm hover:from-orange-600 hover:to-yellow-600 transition-all">Get Started</button>
+        </div>
+      </nav>
+    </aside>
   );
 };
 
@@ -251,28 +261,28 @@ const TokenCard = ({ token }: TokenCardProps) => (
 );
 
 /* ---------- Main platform ---------- */
-interface Web3RWAPlatformProps {
+interface Web3W3EPlatformProps {
   activeTab?: string;
 }
 
-const Web3RWAPlatform = ({ activeTab: propActiveTab }: Web3RWAPlatformProps = {}) => {
+const Web3W3EPlatform = ({ activeTab: propActiveTab }: Web3W3EPlatformProps = {}) => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(propActiveTab || 'market-overview');
-  
+
   // News notification system
   const { notification } = useNewsCache();
-  
+
   // Update activeTab when prop changes
   useEffect(() => {
     if (propActiveTab) {
       setActiveTab(propActiveTab);
     }
   }, [propActiveTab]);
-  
+
   // Handle tab navigation with proper routing
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
-    
+
     // Navigate to the appropriate route
     if (tab === 'market-overview') {
       router.push('/app');
@@ -305,7 +315,7 @@ const Web3RWAPlatform = ({ activeTab: propActiveTab }: Web3RWAPlatformProps = {}
 
     // Set initial state
     handleResize();
-    
+
     // Listen for window resize
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -343,17 +353,17 @@ const Web3RWAPlatform = ({ activeTab: propActiveTab }: Web3RWAPlatformProps = {}
               <button onClick={() => { setSidebarOpen(!sidebarOpen); setUserToggledSidebar(true); }} className="hidden lg:block p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg" aria-label="Toggle sidebar">
                 {sidebarOpen ? <X className="w-5 h-5 text-gray-700 dark:text-gray-300" /> : <Menu className="w-5 h-5 text-gray-700 dark:text-gray-300" />}
               </button>
-              
+
               {/* Home button */}
-              <button 
+              <button
                 onClick={() => window.open('https://w3-energy.org', '_blank')}
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors" 
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 title="Visit W3-Energy.org"
                 aria-label="Visit W3-Energy.org"
               >
                 <Home className="w-5 h-5 text-gray-700 dark:text-gray-300" />
               </button>
-              
+
               {/* Sepolia Testnet Badge */}
               <div className="flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 bg-gradient-to-r from-yellow-100 to-orange-100 text-gray-700 dark:text-gray-800 rounded-full text-xs sm:text-sm font-medium shadow-sm border border-yellow-200 dark:border-yellow-300">
                 <span className="text-xs sm:text-sm">🟡</span>
@@ -369,9 +379,9 @@ const Web3RWAPlatform = ({ activeTab: propActiveTab }: Web3RWAPlatformProps = {}
               <div className="hidden lg:block">
                 <GasPriceDisplay />
               </div>
-              
+
               {/* List Asset Button */}
-              <button 
+              <button
                 className="flex items-center justify-center gap-2 p-2 h-10 w-10 sm:w-auto bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-md hover:shadow-lg"
                 onClick={() => {
                   // TODO: Implement list asset functionality
@@ -382,7 +392,7 @@ const Web3RWAPlatform = ({ activeTab: propActiveTab }: Web3RWAPlatformProps = {}
                 <PlusCircle className="w-4 h-4" />
                 <span className="hidden sm:inline text-sm">List Asset</span>
               </button>
-              
+
               {/* Wallet Connect - responsive design */}
               <div className="hidden sm:block">
                 <WalletConnectButton />
@@ -390,16 +400,16 @@ const Web3RWAPlatform = ({ activeTab: propActiveTab }: Web3RWAPlatformProps = {}
               <div className="sm:hidden">
                 <CompactWalletButton />
               </div>
-              
+
               {/* Notification and Theme toggle group - tighter spacing on mobile */}
               <div className="flex items-center gap-0.5 sm:gap-1 lg:gap-2">
                 {/* Notifications - always visible */}
-                <button 
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg relative h-10 w-10 flex items-center justify-center group" 
+                <button
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg relative h-10 w-10 flex items-center justify-center group"
                   aria-label="Notifications"
                   onClick={() => handleTabChange('news')}
-                  title={notification.hasNewUpdates ? 
-                    `${notification.newTwitterCount + notification.newNewsCount} new updates` : 
+                  title={notification.hasNewUpdates ?
+                    `${notification.newTwitterCount + notification.newNewsCount} new updates` :
                     'News up to date'
                   }
                 >
@@ -416,7 +426,7 @@ const Web3RWAPlatform = ({ activeTab: propActiveTab }: Web3RWAPlatformProps = {}
                     </div>
                   )}
                 </button>
-                
+
                 {/* Theme toggle button */}
                 <button
                   onClick={toggleTheme}
@@ -494,28 +504,28 @@ const Web3RWAPlatform = ({ activeTab: propActiveTab }: Web3RWAPlatformProps = {}
               {/* Quick actions */}
               <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
-                  { 
-                    icon: ArrowUpDown, 
-                    title: 'DEX Trading', 
-                    desc: 'Swap RWA tokens with minimal slippage', 
+                  {
+                    icon: ArrowUpDown,
+                    title: 'DEX Trading',
+                    desc: 'Swap W3E tokens with minimal slippage',
                     bgClass: 'bg-blue-500/20 dark:bg-blue-400/20 hover:bg-blue-500/30 dark:hover:bg-blue-400/30 border border-blue-500/30 dark:border-blue-400/30',
                     textColor: 'text-blue-700 dark:text-blue-300',
                     iconColor: 'text-blue-600 dark:text-blue-400',
                     buttonAction: 'Trade Now'
                   },
-                  { 
-                    icon: Droplets, 
-                    title: 'Liquidity Pools', 
-                    desc: 'Provide liquidity and earn fees', 
+                  {
+                    icon: Droplets,
+                    title: 'Liquidity Pools',
+                    desc: 'Provide liquidity and earn fees',
                     bgClass: 'bg-emerald-500/20 dark:bg-emerald-400/20 hover:bg-emerald-500/30 dark:hover:bg-emerald-400/30 border border-emerald-500/30 dark:border-emerald-400/30',
                     textColor: 'text-emerald-700 dark:text-emerald-300',
                     iconColor: 'text-emerald-600 dark:text-emerald-400',
                     buttonAction: 'Add Liquidity'
                   },
-                  { 
-                    icon: Lock, 
-                    title: 'Yield Farming', 
-                    desc: 'Stake LP tokens for maximum yields', 
+                  {
+                    icon: Lock,
+                    title: 'Yield Farming',
+                    desc: 'Stake LP tokens for maximum yields',
                     bgClass: 'bg-purple-500/20 dark:bg-purple-400/20 hover:bg-purple-500/30 dark:hover:bg-purple-400/30 border border-purple-500/30 dark:border-purple-400/30',
                     textColor: 'text-purple-700 dark:text-purple-300',
                     iconColor: 'text-purple-600 dark:text-purple-400',
@@ -545,5 +555,5 @@ const Web3RWAPlatform = ({ activeTab: propActiveTab }: Web3RWAPlatformProps = {}
   );
 };
 
-export default Web3RWAPlatform;
-export type { Web3RWAPlatformProps };
+export default Web3W3EPlatform;
+export type { Web3W3EPlatformProps };

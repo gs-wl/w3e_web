@@ -9,12 +9,12 @@
 
 ## 🚀 Deployed Contracts
 
-### RWA Token (ERC20)
+### W3E Token (ERC20)
 - **Contract Address**: `0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484`
 - **Etherscan**: https://sepolia.etherscan.io/address/0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484
 - **Verification Status**: ✅ **VERIFIED**
-- **Initial Supply**: 100,000,000 RWA tokens
-- **Max Supply**: 1,000,000,000 RWA tokens
+- **Initial Supply**: 100,000,000 W3E tokens
+- **Max Supply**: 1,000,000,000 W3E tokens
 
 ### Multi Pool Staking Contract
 - **Contract Address**: `0x3c122D7571F76a32bE8dbC33255E97156f3A9576`
@@ -24,24 +24,24 @@
 
 ## 🔧 Initial Pool Configuration (Pool ID: 0)
 
-- **Staking Token**: RWA Token (`0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484`)
-- **Max Stake Limit**: 1,000,000 RWA tokens
-- **Min Stake Amount**: 100 RWA tokens
-- **Reward Rate**: 0.1 RWA tokens per second
+- **Staking Token**: W3E Token (`0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484`)
+- **Max Stake Limit**: 1,000,000 W3E tokens
+- **Min Stake Amount**: 100 W3E tokens
+- **Reward Rate**: 0.1 W3E tokens per second
 - **Lock Period**: 86,400 seconds (24 hours)
 - **Status**: ✅ Active
 
 ## 🔗 Important Links
 
 ### Etherscan Links
-- **RWA Token Contract**: https://sepolia.etherscan.io/address/0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484
+- **W3E Token Contract**: https://sepolia.etherscan.io/address/0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484
 - **Staking Contract**: https://sepolia.etherscan.io/address/0x3c122D7571F76a32bE8dbC33255E97156f3A9576
 - **Deployer Address**: https://sepolia.etherscan.io/address/0xEFc019FbC0A7C8938E44b98e0251e77cB198E8F0
 
 ### Contract Interactions
-- **Add RWA Token to MetaMask**:
+- **Add W3E Token to MetaMask**:
   - Token Address: `0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484`
-  - Symbol: `RWA`
+  - Symbol: `W3E`
   - Decimals: `18`
 
 ## 🧪 Testing the Deployment
@@ -62,20 +62,20 @@ If you need testnet ETH:
 
 ### 3. Interact with Contracts
 
-#### RWA Token Functions
+#### W3E Token Functions
 ```javascript
 // Contract ABI and address
-const RWA_TOKEN_ADDRESS = "0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484";
+const W3E_TOKEN_ADDRESS = "0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484";
 
 // Basic token operations
-await rwaToken.balanceOf(userAddress);
-await rwaToken.transfer(recipient, amount);
-await rwaToken.approve(spender, amount);
+await w3eToken.balanceOf(userAddress);
+await w3eToken.transfer(recipient, amount);
+await w3eToken.approve(spender, amount);
 
 // Admin functions (owner only)
-await rwaToken.mint(recipient, amount); // After 30-day cooldown
-await rwaToken.setTransferFee(feeInBasisPoints, feeCollector);
-await rwaToken.setBlacklisted(address, true/false);
+await w3eToken.mint(recipient, amount); // After 30-day cooldown
+await w3eToken.setTransferFee(feeInBasisPoints, feeCollector);
+await w3eToken.setBlacklisted(address, true/false);
 ```
 
 #### Staking Contract Functions
@@ -84,7 +84,7 @@ await rwaToken.setBlacklisted(address, true/false);
 const STAKING_ADDRESS = "0x3c122D7571F76a32bE8dbC33255E97156f3A9576";
 
 // Staking operations
-await rwaToken.approve(STAKING_ADDRESS, stakeAmount);
+await w3eToken.approve(STAKING_ADDRESS, stakeAmount);
 await stakingContract.stake(0, stakeAmount); // Pool ID 0
 await stakingContract.pendingRewards(0, userAddress);
 await stakingContract.claimRewards(0);
@@ -98,7 +98,7 @@ Add these to your frontend `.env` file:
 
 ```env
 # Sepolia Testnet Contract Addresses
-NEXT_PUBLIC_RWA_TOKEN_ADDRESS=0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484
+NEXT_PUBLIC_W3E_TOKEN_ADDRESS=0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484
 NEXT_PUBLIC_STAKING_CONTRACT_ADDRESS=0x3c122D7571F76a32bE8dbC33255E97156f3A9576
 
 # Network Configuration
@@ -108,7 +108,7 @@ NEXT_PUBLIC_SEPOLIA_CHAIN_ID=11155111
 
 ### Contract ABIs
 The contract ABIs are available in:
-- `contracts/artifacts/staking/RwaToken.sol/RWAToken.json`
+- `contracts/artifacts/staking/W3eToken.sol/W3EToken.json`
 - `contracts/artifacts/staking/Staking.sol/MultiPoolStaking.json`
 
 ## 🔐 Security Considerations
@@ -125,7 +125,7 @@ The contract ABIs are available in:
 ### Owner Capabilities
 The deployer address (`0xEFc019FbC0A7C8938E44b98e0251e77cB198E8F0`) has the following privileges:
 
-**RWA Token**:
+**W3E Token**:
 - Mint new tokens (with cooldown and caps)
 - Set transfer fees and fee collector
 - Blacklist/unblacklist addresses
@@ -144,12 +144,12 @@ The deployer address (`0xEFc019FbC0A7C8938E44b98e0251e77cB198E8F0`) has the foll
 ## 🚨 Important Notes
 
 ### 1. Minting Cooldown
-- The RWA token has a **30-day cooldown** between mints
+- The W3E token has a **30-day cooldown** between mints
 - Next mint available: **August 28, 2025**
-- Current minting cap: **10,000,000 RWA tokens**
+- Current minting cap: **10,000,000 W3E tokens**
 
 ### 2. Staking Rewards
-- The staking contract needs RWA tokens to distribute as rewards
+- The staking contract needs W3E tokens to distribute as rewards
 - Transfer tokens to the staking contract address for reward distribution
 - Rewards are calculated per second based on the configured rate
 

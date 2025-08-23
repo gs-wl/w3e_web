@@ -1,8 +1,8 @@
 /**
- * @fileoverview Component exports for RWA DeFi Platform
+ * @fileoverview Component exports for W3E DeFi Platform
  * @description Centralized export file for all React components
  * @version 1.0.0
- * @author RWA DeFi Team
+ * @author W3E DeFi Team
  */
 
 // =============================================================================
@@ -10,9 +10,9 @@
 // =============================================================================
 
 /**
- * Main platform component - Entry point for the RWA DeFi application
+ * Main platform component - Entry point for the W3E DeFi application
  */
-export { default as Web3RWAPlatform } from './rwa-defi-platform';
+export { default as Web3W3EPlatform } from './w3e-defi-platform';
 
 /**
  * Web3 provider wrapper for blockchain connectivity
@@ -31,12 +31,12 @@ export { Web3Provider } from './web3-provider';
 export { PortfolioPage } from './portfolio-page';
 
 /**
- * Staking interface for earning rewards on RWA tokens
+ * Staking interface for earning rewards on W3E tokens
  */
 export { default as StakingPage } from './staking-page';
 
 /**
- * News page displaying Twitter/X posts and AI-powered RWA/DeFi news
+ * News page displaying Twitter/X posts and AI-powered W3E/DeFi news
  */
 export { default as NewsPage } from './news-page';
 
@@ -107,7 +107,7 @@ export { Sidebar } from './layout/sidebar';
 // =============================================================================
 
 /**
- * Token card component for displaying RWA token information
+ * Token card component for displaying W3E token information
  */
 export { TokenCard } from './cards/token-card';
 

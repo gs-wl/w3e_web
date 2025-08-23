@@ -50,10 +50,10 @@ export const BulkActions: React.FC<BulkActionsProps> = ({
           
           <div className="hidden sm:flex items-center gap-4 text-sm text-blue-700 dark:text-blue-300">
             <span>
-              Total Staked: {totalStakedAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} RWA
+              Total Staked: {totalStakedAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} W3E
             </span>
             <span>
-              Total Rewards: {totalPendingRewards.toLocaleString(undefined, { maximumFractionDigits: 4 })} RWA
+              Total Rewards: {totalPendingRewards.toLocaleString(undefined, { maximumFractionDigits: 4 })} W3E
             </span>
           </div>
         </div>
@@ -139,12 +139,12 @@ export const BulkActions: React.FC<BulkActionsProps> = ({
           <div>
             <span className="font-medium">Total Staked:</span>
             <br />
-            {totalStakedAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} RWA
+            {totalStakedAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} W3E
           </div>
           <div>
             <span className="font-medium">Total Rewards:</span>
             <br />
-            {totalPendingRewards.toLocaleString(undefined, { maximumFractionDigits: 4 })} RWA
+            {totalPendingRewards.toLocaleString(undefined, { maximumFractionDigits: 4 })} W3E
           </div>
         </div>
       </div>

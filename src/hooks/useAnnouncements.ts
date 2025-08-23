@@ -56,7 +56,7 @@ export const useAnnouncements = () => {
         {
           id: '1',
           title: '🚀 New Feature Launch',
-          message: 'Introducing cross-chain staking rewards! Earn up to 18% APY on your RWA tokens.',
+          message: 'Introducing cross-chain staking rewards! Earn up to 18% APY on your W3E tokens.',
           type: 'success',
           created_at: new Date().toISOString(),
           is_active: true,

@@ -1,12 +1,12 @@
 'use client'
 
-import { Web3RWAPlatform } from '@/components'
+import { Web3W3EPlatform } from '@/components'
 import { WhitelistGuard } from '@/components/whitelist-guard'
 
 export default function ImpactRoute() {
   return (
     <WhitelistGuard>
-      <Web3RWAPlatform activeTab="impact" />
+      <Web3W3EPlatform activeTab="impact" />
     </WhitelistGuard>
   )
 }

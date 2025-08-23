@@ -158,7 +158,7 @@ const StakingPage = () => {
 
     return allPools.data.map((pool: any, index: number) => ({
       poolId: index,
-      asset: 'RWA', // Since we're using RWA token
+      asset: 'W3E', // Since we're using W3E token
       apy: contractUtils.calculateAPY(
         pool.rewardRate?.toString() || '0',
         pool.totalStaked?.toString() || '1'
@@ -366,7 +366,7 @@ const StakingPage = () => {
                   <DollarSign className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                   <div className="flex flex-col">
                     <span className="text-xs text-gray-500 dark:text-gray-400 leading-tight">
-                      RWA Balance
+                      W3E Balance
                     </span>
                     <span className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">
                       {isCorrectNetwork && tokenData.balance ?
@@ -427,7 +427,7 @@ const StakingPage = () => {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Connect Your Wallet</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Connect your wallet to start staking RWA tokens and earning rewards.
+                  Connect your wallet to start staking W3E tokens and earning rewards.
                 </p>
               </div>
             </div>
@@ -633,7 +633,7 @@ const StakingPage = () => {
                   <p className="font-semibold text-gray-900 dark:text-white">
                     {realStakesData.length > 0
                       ? realStakesData.reduce((sum, stake) => sum + stake.stakedAmount, 0).toLocaleString()
-                      : '0'} RWA
+                      : '0'} W3E
                   </p>
                 </div>
                 <div>
@@ -641,7 +641,7 @@ const StakingPage = () => {
                   <p className="font-semibold text-green-600 dark:text-green-400">
                     {realStakesData.length > 0
                       ? realStakesData.reduce((sum, stake) => sum + stake.pendingRewards, 0).toLocaleString(undefined, { maximumFractionDigits: 4 })
-                      : '0'} RWA
+                      : '0'} W3E
                   </p>
                 </div>
                 <div>
@@ -882,13 +882,13 @@ const OfferingGrid = ({
               <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
                 <span className="text-xs text-gray-500 dark:text-gray-400">Min. Stake</span>
                 <p className="font-semibold text-sm text-gray-900 dark:text-white">
-                  {contractUtils.formatTokenDisplay(pool.min.toString())} {pool.asset}
+                  {contractUtils.formatTokenDisplay(pool.min.toString())}
                 </p>
               </div>
               <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3">
                 <span className="text-xs text-gray-500 dark:text-gray-400">Total Staked</span>
                 <p className="font-semibold text-sm text-gray-900 dark:text-white">
-                  {contractUtils.formatLargeNumber(pool.totalStaked)} {pool.asset}
+                  {contractUtils.formatLargeNumber(pool.totalStaked)} W3E
                 </p>
               </div>
             </div>
@@ -907,7 +907,7 @@ const OfferingGrid = ({
                     : pool.maxStakeLimit >= 1000
                       ? `${(pool.maxStakeLimit / 1000).toFixed(1)}K`
                       : pool.maxStakeLimit.toFixed(0)
-                  } {pool.asset}
+                  } W3E
                 </div>
                 <div className="w-full bg-green-100 dark:bg-gray-700 rounded-full h-2 mb-2">
                   <div
@@ -1041,7 +1041,7 @@ const RewardsTableInner = ({
             <span className="text-sm text-gray-500 dark:text-gray-400">Total Claimable</span>
           </div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            {totalClaimable.toFixed(4)} RWA
+            {totalClaimable.toFixed(4)} W3E
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
             {claimableRewards.length} pools available
@@ -1054,7 +1054,7 @@ const RewardsTableInner = ({
             <span className="text-sm text-gray-500 dark:text-gray-400">Total Earned</span>
           </div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            {totalEarned.toFixed(4)} RWA
+            {totalEarned.toFixed(4)} W3E
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
             All time rewards
@@ -1155,7 +1155,7 @@ const RewardsTableInner = ({
         </div>
         {sortedAndFilteredRewards.length > 0 && (
           <div className="text-xs text-gray-500 dark:text-gray-400">
-            Total claimable: {claimableRewards.reduce((sum, r) => sum + r.availableRewards, 0).toFixed(4)} RWA
+            Total claimable: {claimableRewards.reduce((sum, r) => sum + r.availableRewards, 0).toFixed(4)} W3E
           </div>
         )}
       </div>
@@ -1799,7 +1799,7 @@ const AdminPanel = ({ contractPaused, emergencyWithdrawFee, allPools, isConnecte
     try {
       await tokenApprove.writeContract({
         address: rewardDepositForm.tokenAddress as `0x${string}`,
-        abi: require('@/abi/tokens/RwaToken.json'),
+        abi: require('@/abi/tokens/W3eToken.json'),
         functionName: 'approve',
         args: [
           contractAddresses.stakingContract as `0x${string}`,
@@ -1830,7 +1830,7 @@ const AdminPanel = ({ contractPaused, emergencyWithdrawFee, allPools, isConnecte
     try {
       await tokenTransfer.writeContract({
         address: rewardDepositForm.tokenAddress as `0x${string}`,
-        abi: require('@/abi/tokens/RwaToken.json'),
+        abi: require('@/abi/tokens/W3eToken.json'),
         functionName: 'transfer',
         args: [
           contractAddresses.stakingContract as `0x${string}`,
@@ -2585,7 +2585,7 @@ const AdminPanel = ({ contractPaused, emergencyWithdrawFee, allPools, isConnecte
                       placeholder="0x... (Token contract address)"
                     />
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                      Enter the contract address of the reward token (e.g., RWA token address)
+                      Enter the contract address of the reward token (e.g., W3E token address)
                     </p>
                   </div>
                   <div>

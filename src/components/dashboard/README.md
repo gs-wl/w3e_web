@@ -1,6 +1,6 @@
 # Dashboard Components
 
-This directory contains professional dashboard components for the W3-Energy RWA DeFi platform, inspired by modern crypto trading interfaces.
+This directory contains professional dashboard components for the W3-Energy W3E DeFi platform, inspired by modern crypto trading interfaces.
 
 ## Components Overview
 

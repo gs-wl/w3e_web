@@ -28,7 +28,7 @@ and green bonds.
 
 ```bash
 git clone <your-repo-url>
-cd rwa-defi-platform
+cd w3e-defi-platform
 ```
 
 2. Install dependencies:
@@ -56,7 +56,7 @@ pnpm dev
 ## 🏗️ Project Structure
 
 ```
-rwa-defi-platform/
+w3e-defi-platform/
 ├── app/                    # Next.js 14 App Router
 │   ├── globals.css        # Global styles and Tailwind imports
 │   ├── layout.tsx         # Root layout component
@@ -67,7 +67,7 @@ rwa-defi-platform/
 │   │   ├── layout/       # Layout components (Sidebar, etc.)
 │   │   ├── ui/           # Base UI components (Button, Card)
 │   │   ├── index.ts      # Component exports
-│   │   └── rwa-defi-platform.tsx # Main platform component
+│   │   └── w3e-defi-platform.tsx # Main platform component
 │   ├── lib/              # Utility functions and configurations
 │   ├── types/            # TypeScript type definitions
 │   └── utils/            # Helper functions
@@ -92,7 +92,7 @@ The platform supports three built-in themes:
 
 - **Light Mode**: Clean, professional appearance
 - **Dark Mode**: Reduced eye strain for extended use
-- **Green Mode**: Eco-friendly theme matching the RWA focus
+- **Green Mode**: Eco-friendly theme matching the W3E focus
 
 ## 📱 Responsive Design
 
@@ -182,7 +182,7 @@ for details.
 - [Lucide React](https://lucide.dev/) for beautiful icons
 - [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
 - [Next.js](https://nextjs.org/) for the amazing React framework
-- The DeFi and RWA communities for inspiration
+- The DeFi and W3E communities for inspiration
 
 ## 📞 Support
 

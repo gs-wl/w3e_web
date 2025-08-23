@@ -243,7 +243,7 @@ export function Web3ClaimModal({ isOpen, onClose, poolId }: Web3ClaimModalProps)
                   </span>
                 </div>
                 <div className="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
-                  <span>RWA Token Rewards</span>
+                  <span>W3E Token Rewards</span>
                   <span>≈ ${totalUsdValue.toLocaleString()}</span>
                 </div>
               </div>

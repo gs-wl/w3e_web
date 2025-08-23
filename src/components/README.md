@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains all React components for the RWA DeFi Platform. The components are organized in a modular, scalable structure following industry best practices for production-ready applications.
+This directory contains all React components for the W3E DeFi Platform. The components are organized in a modular, scalable structure following industry best practices for production-ready applications.
 
 ## Directory Structure
 
@@ -12,7 +12,7 @@ src/components/
 ├── index.ts                     # Central export file
 ├── 
 ├── Core Platform Components
-├── rwa-defi-platform.tsx        # Main platform component
+├── w3e-defi-platform.tsx        # Main platform component
 ├── web3-provider.tsx            # Web3 connectivity wrapper
 ├── 
 ├── Page Components
@@ -42,7 +42,7 @@ src/components/
 ├── 
 ├── Card Components
 ├── cards/
-│   └── token-card.tsx           # RWA token display
+│   └── token-card.tsx           # W3E token display
 ├── 
 └── UI Components (Design System)
     ├── ui/
@@ -265,4 +265,4 @@ When contributing to the components library:
 
 **Last Updated:** December 2024  
 **Version:** 1.0.0  
-**Maintainer:** RWA DeFi Team
+**Maintainer:** W3E DeFi Team

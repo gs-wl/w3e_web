@@ -1,10 +1,10 @@
-// Contract ABI exports for the RWA DeFi Platform
+// Contract ABI exports for the W3E DeFi Platform
 
 // Staking contracts
 import StakingABI from './staking/Staking.json';
 
 // Token contracts
-import RwaTokenABI from './tokens/RwaToken.json';
+import W3eTokenABI from './tokens/W3eToken.json';
 
 // Export all ABIs
 export const ABIS = {
@@ -12,7 +12,7 @@ export const ABIS = {
   Staking: StakingABI,
   
   // Tokens
-  RwaToken: RwaTokenABI,
+  W3eToken: W3eTokenABI,
 } as const;
 
 // Type-safe ABI access
@@ -26,5 +26,5 @@ export function getABI(name: ABIName) {
 // Re-export individual ABIs for direct imports
 export {
   StakingABI,
-  RwaTokenABI,
+  W3eTokenABI,
 };

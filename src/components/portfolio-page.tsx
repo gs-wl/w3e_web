@@ -69,7 +69,7 @@ const mockAssets: PortfolioAsset[] = [
   {
     id: '2',
     symbol: 'WIND',
-    name: 'Wind Power RWA',
+    name: 'Wind Power W3E',
     balance: 890.25,
     value: 12483.5,
     price: 14.02,
@@ -290,7 +290,7 @@ export function PortfolioPage() {
             </div>
             <CardTitle className="text-2xl text-gray-900 dark:text-white">Connect Your Wallet</CardTitle>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-              Connect your wallet to view your portfolio and manage your RWA investments
+              Connect your wallet to view your portfolio and manage your W3E investments
             </p>
           </CardHeader>
           <CardContent className="text-center">
@@ -328,7 +328,7 @@ export function PortfolioPage() {
               />
               <div>
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white">Portfolio</h1>
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 hidden sm:block">Manage your RWA investments</p>
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 hidden sm:block">Manage your W3E investments</p>
               </div>
             </div>
             

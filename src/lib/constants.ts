@@ -87,10 +87,10 @@ export const API_ENDPOINTS = {
 
 // Local Storage Keys
 export const STORAGE_KEYS = {
-  THEME: 'rwa-defi-theme',
-  WALLET_ADDRESS: 'rwa-defi-wallet',
-  USER_PREFERENCES: 'rwa-defi-preferences',
-  PORTFOLIO_CACHE: 'rwa-defi-portfolio',
+  THEME: 'w3e-defi-theme',
+  WALLET_ADDRESS: 'w3e-defi-wallet',
+  USER_PREFERENCES: 'w3e-defi-preferences',
+  PORTFOLIO_CACHE: 'w3e-defi-portfolio',
 } as const
 
 // Feature Flags

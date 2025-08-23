@@ -11,8 +11,8 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 
 /**
- * @title RWAToken
- * @dev Professional ERC20 token contract for Real World Asset tokenization
+ * @title W3EToken
+ * @dev Professional ERC20 token contract for Web3 Energy Asset tokenization
  * 
  * Features:
  * - Standard ERC20 functionality
@@ -39,7 +39,7 @@ import "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
  * - Gas-efficient past votes retrieval
  * - EIP-712 compliant vote delegation support
  */
-contract RWAToken is ERC20, ERC20Pausable, ERC20Burnable, ERC20Votes, Ownable, ReentrancyGuard {
+contract W3EToken is ERC20, ERC20Pausable, ERC20Burnable, ERC20Votes, Ownable, ReentrancyGuard {
 
     // Token configuration
     uint8 private constant DECIMALS = 18;

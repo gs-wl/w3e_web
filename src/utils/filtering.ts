@@ -63,9 +63,9 @@ export const getStatusFilterOptions = () => [
 
 export const getAmountRangeOptions = () => [
   { value: 'all' as AmountRangeFilter, label: 'All Amounts', count: 0 },
-  { value: 'small' as AmountRangeFilter, label: 'Small (< 1K RWA)', count: 0 },
-  { value: 'medium' as AmountRangeFilter, label: 'Medium (1K - 10K RWA)', count: 0 },
-  { value: 'large' as AmountRangeFilter, label: 'Large (> 10K RWA)', count: 0 },
+  { value: 'small' as AmountRangeFilter, label: 'Small (< 1K W3E)', count: 0 },
+  { value: 'medium' as AmountRangeFilter, label: 'Medium (1K - 10K W3E)', count: 0 },
+  { value: 'large' as AmountRangeFilter, label: 'Large (> 10K W3E)', count: 0 },
 ];
 
 export const updateFilterCounts = (

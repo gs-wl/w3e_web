@@ -50,7 +50,7 @@ export const useAggregatedUserStakes = (userAddress?: string): StakeDataHookResu
           
           return {
             poolId: validPoolId,
-            asset: 'RWA',
+            asset: 'W3E',
             stakedAmount: 0, // Will be populated by individual fetching in table
             pendingRewards: 0, // Will be populated by individual fetching in table
             apy: 20.01,
@@ -155,7 +155,7 @@ export const useIndividualStakeData = (poolId: number, userAddress?: string) => 
 
     const processedStake: ProcessedStake = {
       poolId,
-      asset: 'RWA',
+      asset: 'W3E',
       stakedAmount,
       pendingRewards: rewards,
       apy,

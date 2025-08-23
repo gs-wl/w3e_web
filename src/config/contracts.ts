@@ -7,7 +7,7 @@ export const CONTRACT_ADDRESSES = {
         rpcUrl: 'https://sepolia.infura.io/v3/93e77fdbc00749119977ef7d89e4bc25',
         blockExplorer: 'https://sepolia.etherscan.io',
         contracts: {
-            rwaToken: '0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484',
+            w3eToken: '0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484',
             stakingContract: '0x3c122D7571F76a32bE8dbC33255E97156f3A9576',
             staking: '0x3c122D7571F76a32bE8dbC33255E97156f3A9576', // Alias for compatibility
         },
@@ -19,7 +19,7 @@ export const CONTRACT_ADDRESSES = {
         rpcUrl: 'https://mainnet.infura.io/v3/93e77fdbc00749119977ef7d89e4bc25',
         blockExplorer: 'https://etherscan.io',
         contracts: {
-            rwaToken: '', // To be deployed
+            w3eToken: '', // To be deployed
             stakingContract: '', // To be deployed
             staking: '', // Alias for compatibility
         },
@@ -31,7 +31,7 @@ export const CONTRACT_ADDRESSES = {
         rpcUrl: 'http://127.0.0.1:8545',
         blockExplorer: '',
         contracts: {
-            rwaToken: '', // Set after local deployment
+            w3eToken: '', // Set after local deployment
             stakingContract: '', // Set after local deployment
             staking: '', // Alias for compatibility
         },
@@ -48,9 +48,9 @@ export const getCurrentNetworkConfig = () => {
 
 // Contract metadata
 export const CONTRACT_METADATA = {
-    rwaToken: {
-        name: 'RWA Token',
-        symbol: 'RWA',
+    w3eToken: {
+        name: 'W3E Token',
+        symbol: 'W3E',
         decimals: 18,
         initialSupply: '100000000', // 100M tokens
         maxSupply: '1000000000', // 1B tokens
@@ -119,7 +119,7 @@ export const NETWORK_CONFIG = {
 } as const;
 
 // Helper functions
-export const getContractAddress = (contractName: 'rwaToken' | 'stakingContract') => {
+export const getContractAddress = (contractName: 'w3eToken' | 'stakingContract') => {
     return getCurrentNetworkConfig().contracts[contractName];
 };
 
@@ -145,9 +145,9 @@ export const isSupportedChain = (chainId: number): chainId is keyof typeof NETWO
 
 // Token configuration for adding to wallet
 export const TOKEN_CONFIG = {
-    address: getContractAddress('rwaToken'),
-    symbol: CONTRACT_METADATA.rwaToken.symbol,
-    decimals: CONTRACT_METADATA.rwaToken.decimals,
+    address: getContractAddress('w3eToken'),
+    symbol: CONTRACT_METADATA.w3eToken.symbol,
+    decimals: CONTRACT_METADATA.w3eToken.decimals,
     image: '', // Add token logo URL if available
 };
 

@@ -11,13 +11,13 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://postgres:password@postgres:5432/rwa_defi
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/w3e_defi
       - REDIS_URL=redis://redis:6379
     depends_on:
       - postgres
       - redis
     networks:
-      - rwa-network
+      - w3e-network
     restart: unless-stopped
     volumes:
       - ./logs:/app/logs
@@ -31,13 +31,13 @@ services:
       - '3001:3000'
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://postgres:password@postgres:5432/rwa_defi_dev
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/w3e_defi_dev
       - REDIS_URL=redis://redis:6379
     depends_on:
       - postgres
       - redis
     networks:
-      - rwa-network
+      - w3e-network
     volumes:
       - .:/app
       - /app/node_modules
@@ -49,7 +49,7 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_DB: rwa_defi
+      POSTGRES_DB: w3e_defi
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     ports:
@@ -58,7 +58,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
     networks:
-      - rwa-network
+      - w3e-network
     restart: unless-stopped
 
   # Redis Cache
@@ -69,7 +69,7 @@ services:
     volumes:
       - redis_data:/data
     networks:
-      - rwa-network
+      - w3e-network
     restart: unless-stopped
     command: redis-server --appendonly yes
 
@@ -85,7 +85,7 @@ services:
     depends_on:
       - app
     networks:
-      - rwa-network
+      - w3e-network
     restart: unless-stopped
     profiles:
       - production
@@ -99,7 +99,7 @@ services:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     networks:
-      - rwa-network
+      - w3e-network
     profiles:
       - monitoring
 
@@ -115,7 +115,7 @@ services:
       - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
       - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
     networks:
-      - rwa-network
+      - w3e-network
     profiles:
       - monitoring
 
@@ -126,5 +126,5 @@ volumes:
   grafana_data:
 
 networks:
-  rwa-network:
+  w3e-network:
     driver: bridge

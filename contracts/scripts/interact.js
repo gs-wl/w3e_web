@@ -10,16 +10,16 @@ async function main() {
   console.log("User2:", user2.address);
 
   // You'll need to update these addresses after deployment
-  const RWA_TOKEN_ADDRESS = ""; // Update after deployment
+  const W3E_TOKEN_ADDRESS = ""; // Update after deployment
   const STAKING_ADDRESS = ""; // Update after deployment
   
-  if (!RWA_TOKEN_ADDRESS || !STAKING_ADDRESS) {
+  if (!W3E_TOKEN_ADDRESS || !STAKING_ADDRESS) {
     console.log("❌ Please update contract addresses in this script after deployment");
     return;
   }
 
   // Get contract instances
-  const rwaToken = await ethers.getContractAt("RWAToken", RWA_TOKEN_ADDRESS);
+  const w3eToken = await ethers.getContractAt("W3EToken", W3E_TOKEN_ADDRESS);
   const stakingContract = await ethers.getContractAt("MultiPoolStaking", STAKING_ADDRESS);
 
   console.log("\n=== Contract Information ===");

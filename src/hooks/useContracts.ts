@@ -2,18 +2,18 @@ import React from 'react';
 import { useReadContract, useWriteContract } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
 import { getContractAddress } from '@/config/contracts';
-import RwaTokenABI from '@/abi/tokens/RwaToken.json';
+import W3eTokenABI from '@/abi/tokens/W3eToken.json';
 import StakingABI from '@/abi/staking/Staking.json';
 
 // Contract addresses
-const RWA_TOKEN_ADDRESS = getContractAddress('rwaToken');
+const W3E_TOKEN_ADDRESS = getContractAddress('w3eToken');
 const STAKING_CONTRACT_ADDRESS = getContractAddress('stakingContract');
 
-// RWA Token Read Functions
+// W3E Token Read Functions
 export const useTokenBalance = (address?: string) => {
   return useReadContract({
-    address: RWA_TOKEN_ADDRESS as `0x${string}`,
-    abi: RwaTokenABI,
+    address: W3E_TOKEN_ADDRESS as `0x${string}`,
+    abi: W3eTokenABI,
     functionName: 'balanceOf',
     args: address ? [address] : undefined,
     query: {
@@ -24,8 +24,8 @@ export const useTokenBalance = (address?: string) => {
 
 export const useTokenAllowance = (owner?: string, spender?: string) => {
   return useReadContract({
-    address: RWA_TOKEN_ADDRESS as `0x${string}`,
-    abi: RwaTokenABI,
+    address: W3E_TOKEN_ADDRESS as `0x${string}`,
+    abi: W3eTokenABI,
     functionName: 'allowance',
     args: owner && spender ? [owner, spender] : undefined,
     query: {
@@ -36,32 +36,32 @@ export const useTokenAllowance = (owner?: string, spender?: string) => {
 
 export const useTokenInfo = () => {
   const { data: name } = useReadContract({
-    address: RWA_TOKEN_ADDRESS as `0x${string}`,
-    abi: RwaTokenABI,
+    address: W3E_TOKEN_ADDRESS as `0x${string}`,
+    abi: W3eTokenABI,
     functionName: 'name',
   });
 
   const { data: symbol } = useReadContract({
-    address: RWA_TOKEN_ADDRESS as `0x${string}`,
-    abi: RwaTokenABI,
+    address: W3E_TOKEN_ADDRESS as `0x${string}`,
+    abi: W3eTokenABI,
     functionName: 'symbol',
   });
 
   const { data: decimals } = useReadContract({
-    address: RWA_TOKEN_ADDRESS as `0x${string}`,
-    abi: RwaTokenABI,
+    address: W3E_TOKEN_ADDRESS as `0x${string}`,
+    abi: W3eTokenABI,
     functionName: 'decimals',
   });
 
   const { data: totalSupply } = useReadContract({
-    address: RWA_TOKEN_ADDRESS as `0x${string}`,
-    abi: RwaTokenABI,
+    address: W3E_TOKEN_ADDRESS as `0x${string}`,
+    abi: W3eTokenABI,
     functionName: 'totalSupply',
   });
 
   const { data: maxSupply } = useReadContract({
-    address: RWA_TOKEN_ADDRESS as `0x${string}`,
-    abi: RwaTokenABI,
+    address: W3E_TOKEN_ADDRESS as `0x${string}`,
+    abi: W3eTokenABI,
     functionName: 'MAX_SUPPLY',
   });
 
@@ -74,7 +74,7 @@ export const useTokenInfo = () => {
   };
 };
 
-// RWA Token Write Functions
+// W3E Token Write Functions
 export const useTokenApprove = () => {
   return useWriteContract();
 };
@@ -298,7 +298,7 @@ export const useAllUserStakes = (userAddress?: string) => {
     
     return userStakesDetails.stakedPoolIds.map((poolId: number) => ({
       poolId,
-      asset: 'RWA',
+      asset: 'W3E',
       amount: 0, // Will be populated by individual components
       earned: 0, // Will be populated by individual components
       apy: 20.01, // Placeholder
@@ -352,7 +352,7 @@ export const parseTokenAmount = (amount: bigint) => {
 
 // Contract addresses export
 export const contractAddresses = {
-  rwaToken: RWA_TOKEN_ADDRESS,
+  w3eToken: W3E_TOKEN_ADDRESS,
   stakingContract: STAKING_CONTRACT_ADDRESS,
 };
 

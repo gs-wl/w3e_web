@@ -1,5 +1,5 @@
 /**
- * @fileoverview Type definitions for RWA DeFi Platform components
+ * @fileoverview Type definitions for W3E DeFi Platform components
  * @description Centralized type definitions for component props and interfaces
  * @version 1.0.0
  */

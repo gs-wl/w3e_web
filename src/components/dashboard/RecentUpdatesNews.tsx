@@ -56,7 +56,7 @@ const defaultNewsItems: NewsItem[] = [
   },
   {
     id: '4',
-    title: 'Understanding RWA tokenization and its impact on traditional finance.',
+    title: 'Understanding W3E tokenization and its impact on traditional finance.',
     timeAgo: '5 days ago',
     type: 'blog'
   },
@@ -118,7 +118,7 @@ const defaultNewsItems: NewsItem[] = [
   },
   {
     id: '14',
-    title: 'Weekly market update: RWA sector showing strong growth.',
+    title: 'Weekly market update: W3E sector showing strong growth.',
     timeAgo: '4 days ago',
     type: 'twitter'
   },

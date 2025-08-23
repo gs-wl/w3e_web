@@ -72,7 +72,7 @@ export const SUPPORTED_TOKENS: Array<{
   },
   {
     symbol: 'FOREST',
-    name: 'Forestry RWA Token',
+    name: 'Forestry W3E Token',
     decimals: 18,
     logo: '/xrp.svg',
     color: 'from-green-700 to-green-800',

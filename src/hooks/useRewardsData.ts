@@ -73,7 +73,7 @@ export const useUserRewards = (userAddress?: string): RewardsDataHookResult => {
         // This approach allows the table to render immediately while data loads
         const rewardsData: UserReward[] = poolIds.map((poolId: number) => ({
           poolId,
-          tokenSymbol: 'RWA',
+          tokenSymbol: 'W3E',
           availableRewards: 0, // Will be populated by RewardsRow component
           totalEarned: 0, // Will be populated by RewardsRow component
           apy: 0, // Will be populated by RewardsRow component
@@ -112,7 +112,7 @@ export const useUserRewards = (userAddress?: string): RewardsDataHookResult => {
       try {
         const rewardsData: UserReward[] = poolIds.map((poolId: number) => ({
           poolId,
-          tokenSymbol: 'RWA',
+          tokenSymbol: 'W3E',
           availableRewards: 0,
           totalEarned: 0,
           apy: 0,
@@ -211,12 +211,12 @@ export const useIndividualRewardData = (poolId: number, userAddress?: string) =>
 
     const rewardData: UserReward = {
       poolId,
-      tokenSymbol: 'RWA',
+      tokenSymbol: 'W3E',
       availableRewards: rewards,
       totalEarned: totalClaimed + rewards,
       apy: calculatedAPY,
       status: rewards > 0 ? 'claimable' : 'pending',
-      usdValue: rewards * 1.0, // Assuming 1 RWA = $1 for now
+      usdValue: rewards * 1.0, // Assuming 1 W3E = $1 for now
     };
 
     return rewardData;

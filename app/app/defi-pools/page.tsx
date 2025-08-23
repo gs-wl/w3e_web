@@ -1,12 +1,12 @@
 'use client'
 
-import { Web3RWAPlatform } from '@/components'
+import { Web3W3EPlatform } from '@/components'
 import { WhitelistGuard } from '@/components/whitelist-guard'
 
 export default function DeFiPoolsRoute() {
   return (
     <WhitelistGuard>
-      <Web3RWAPlatform activeTab="defi-pools" />
+      <Web3W3EPlatform activeTab="defi-pools" />
     </WhitelistGuard>
   )
 }

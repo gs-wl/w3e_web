@@ -17,7 +17,7 @@ import {
 
 // Asset types and data from the main platform
 const assetTypes = [
-  { id: 'all', label: 'All RWAs', icon: Globe },
+  { id: 'all', label: 'All W3Es', icon: Globe },
   { id: 'solar', label: 'Solar', icon: Sun },
   { id: 'wind', label: 'Wind', icon: Wind },
   { id: 'uranium', label: 'Uranium', icon: Zap },
@@ -539,7 +539,7 @@ const DashboardPage = () => {
           { 
             icon: ArrowUpDown, 
             title: 'DEX Trading', 
-            desc: 'Swap RWA tokens with minimal slippage', 
+            desc: 'Swap W3E tokens with minimal slippage', 
             bgClass: 'bg-blue-500/20 dark:bg-blue-400/20 hover:bg-blue-500/30 dark:hover:bg-blue-400/30 border border-blue-500/30 dark:border-blue-400/30',
             textColor: 'text-blue-700 dark:text-blue-300',
             iconColor: 'text-blue-600 dark:text-blue-400',

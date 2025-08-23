@@ -7,7 +7,7 @@ This directory contains the Application Binary Interfaces (ABIs) for our deploye
 ```
 src/abi/
 ├── tokens/
-│   ├── RwaToken.json          # RWA Token ABI (ERC20 with advanced features)
+│   ├── W3eToken.json          # W3E Token ABI (ERC20 with advanced features)
 │   └── ERC20Token.json        # Generic ERC20 ABI (for reference)
 └── staking/
     └── Staking.json           # Multi Pool Staking Contract ABI
@@ -15,9 +15,9 @@ src/abi/
 
 ## 🔗 Deployed Contracts (Sepolia Testnet)
 
-### RWA Token
+### W3E Token
 - **Address**: `0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484`
-- **ABI File**: `src/abi/tokens/RwaToken.json`
+- **ABI File**: `src/abi/tokens/W3eToken.json`
 - **Etherscan**: https://sepolia.etherscan.io/address/0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484
 
 ### Multi Pool Staking
@@ -30,7 +30,7 @@ src/abi/
 ### Import ABIs in your components:
 
 ```typescript
-import RwaTokenABI from '@/abi/tokens/RwaToken.json';
+import W3eTokenABI from '@/abi/tokens/W3eToken.json';
 import StakingABI from '@/abi/staking/Staking.json';
 ```
 
@@ -42,7 +42,7 @@ import { useContractRead, useContractWrite } from 'wagmi';
 // Read contract data
 const { data: balance } = useContractRead({
   address: '0x5cfeEc46ABeD58db87a1e2e1873efeecE26a6484',
-  abi: RwaTokenABI,
+  abi: W3eTokenABI,
   functionName: 'balanceOf',
   args: [userAddress],
 });
@@ -74,7 +74,7 @@ When contracts are redeployed or updated:
 1. **Extract new ABIs** from compiled contracts:
    ```bash
    cd contracts
-   node -e "const artifact = require('./artifacts/staking/RwaToken.sol/RWAToken.json'); console.log(JSON.stringify(artifact.abi, null, 2));" > ../src/abi/tokens/RwaToken.json
+   node -e "const artifact = require('./artifacts/staking/W3eToken.sol/W3EToken.json'); console.log(JSON.stringify(artifact.abi, null, 2));" > ../src/abi/tokens/W3eToken.json
    node -e "const artifact = require('./artifacts/staking/Staking.sol/MultiPoolStaking.json'); console.log(JSON.stringify(artifact.abi, null, 2));" > ../src/abi/staking/Staking.json
    ```
 
@@ -87,7 +87,7 @@ When contracts are redeployed or updated:
 
 ## 📋 Contract Functions
 
-### RWA Token (ERC20 + Advanced Features)
+### W3E Token (ERC20 + Advanced Features)
 
 #### Read Functions
 - `name()` - Token name

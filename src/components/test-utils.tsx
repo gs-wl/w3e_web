@@ -1,5 +1,5 @@
 /**
- * @fileoverview Testing utilities for RWA DeFi Platform components
+ * @fileoverview Testing utilities for W3E DeFi Platform components
  * @description Helper functions and mocks for component testing
  * @version 1.0.0
  */
