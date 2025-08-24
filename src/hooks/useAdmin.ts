@@ -14,12 +14,22 @@ export function useAdmin() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [adminData, setAdminData] = useState<AdminData | null>(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   useEffect(() => {
     async function loadAdminList() {
       try {
-        // Fetch the admin list from Supabase via API
-        const response = await fetch('/api/admin-wallets');
+        setIsLoading(true);
+        
+        // Add cache-busting parameter to prevent caching issues
+        const timestamp = new Date().getTime();
+        const response = await fetch(`/api/admin-wallets?_t=${timestamp}`, {
+          cache: 'no-cache',
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        });
         
         if (!response.ok) {
           throw new Error(`Failed to fetch admin wallets: ${response.status}`);
@@ -32,6 +42,7 @@ export function useAdmin() {
         console.log('  - isConnected:', isConnected);
         console.log('  - address:', address);
         console.log('  - admin addresses:', adminList.adminAddresses);
+        console.log('  - timestamp:', new Date().toISOString());
         
         if (!isConnected || !address) {
           console.log('  - Result: Not connected or no address');
@@ -58,12 +69,18 @@ export function useAdmin() {
       }
     }
 
+    // Always load admin list when hook is called
     loadAdminList();
-  }, [address, isConnected]);
+  }, [address, isConnected, refreshTrigger]);
+
+  const refreshAdminStatus = () => {
+    setRefreshTrigger(prev => prev + 1);
+  };
 
   return {
     isAdmin,
     isLoading,
-    adminData
+    adminData,
+    refreshAdminStatus
   };
 }

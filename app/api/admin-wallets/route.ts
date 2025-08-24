@@ -36,6 +36,12 @@ export async function GET() {
       adminWallets, // Full data for admin interfaces
       lastUpdated: new Date().toISOString(),
       version: "2.0.0" // Updated version to indicate DB storage
+    }, {
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
     });
 
   } catch (error) {
@@ -70,11 +76,11 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if address already exists
+    // Check if address already exists (case-insensitive)
     const { data: existingWallet, error: checkError } = await supabase
       .from('admin_wallets')
       .select('id, is_active')
-      .eq('address', address.toLowerCase())
+      .ilike('address', address)
       .single();
 
     if (checkError && checkError.code !== 'PGRST116') {
@@ -96,7 +102,7 @@ export async function POST(request: Request) {
         const { data: updatedWallet, error: updateError } = await supabase
           .from('admin_wallets')
           .update({ is_active: true, label, added_by })
-          .eq('address', address.toLowerCase())
+          .ilike('address', address)
           .select()
           .single();
 
@@ -116,11 +122,11 @@ export async function POST(request: Request) {
       }
     }
 
-    // Create new admin wallet
+    // Create new admin wallet (preserve original case)
     const { data: newAdminWallet, error: insertError } = await supabase
       .from('admin_wallets')
       .insert({
-        address: address.toLowerCase(),
+        address: address, // Keep original checksummed format
         label: label || null,
         added_by: added_by || 'api',
         is_active: true
@@ -167,11 +173,11 @@ export async function DELETE(request: Request) {
       );
     }
 
-    // Set admin wallet as inactive instead of deleting
+    // Set admin wallet as inactive instead of deleting (case-insensitive)
     const { data: updatedWallet, error: updateError } = await supabase
       .from('admin_wallets')
       .update({ is_active: false })
-      .eq('address', address.toLowerCase())
+      .ilike('address', address)
       .select()
       .single();
 

@@ -1,12 +1,12 @@
 'use client'
 
 import { Web3W3EPlatform } from '@/components'
-import { WhitelistGuard } from '@/components/whitelist-guard'
+import { AdminGuard } from '@/components/admin-guard'
 
 export default function AdminAppPage() {
   return (
-    <WhitelistGuard>
+    <AdminGuard>
       <Web3W3EPlatform activeTab="admin" />
-    </WhitelistGuard>
+    </AdminGuard>
   )
 }

@@ -79,6 +79,11 @@ export { WhitelistGuard } from './whitelist-guard';
  */
 export { AdminGuard } from './admin-guard';
 
+/**
+ * Guard component for app access (whitelist OR admin)
+ */
+export { AppAccessGuard } from './app-access-guard';
+
 // =============================================================================
 // WALLET COMPONENTS
 // =============================================================================
