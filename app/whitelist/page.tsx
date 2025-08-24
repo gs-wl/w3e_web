@@ -246,7 +246,7 @@ export default function WhitelistPage() {
                           className="w-4 h-4 rounded border-2"
                           style={{ accentColor: '#13493f' }}
                         />
-                        <span className="text-sm" style={{ color: '#13493f' }}>☑ Pre-launch / Airdrops</span>
+                        <span className="text-sm" style={{ color: '#13493f' }}>Pre-launch / Airdrops</span>
                       </label>
                       <label className="flex items-center space-x-3">
                         <input
@@ -257,7 +257,7 @@ export default function WhitelistPage() {
                           className="w-4 h-4 rounded border-2"
                           style={{ accentColor: '#13493f' }}
                         />
-                        <span className="text-sm" style={{ color: '#13493f' }}>☑ Competitions & Referrals</span>
+                        <span className="text-sm" style={{ color: '#13493f' }}>Competitions & Referrals</span>
                       </label>
                       <label className="flex items-center space-x-3">
                         <input
@@ -268,7 +268,7 @@ export default function WhitelistPage() {
                           className="w-4 h-4 rounded border-2"
                           style={{ accentColor: '#13493f' }}
                         />
-                        <span className="text-sm" style={{ color: '#13493f' }}>☑ Bug Bounty Program</span>
+                        <span className="text-sm" style={{ color: '#13493f' }}>Bug Bounty Program</span>
                       </label>
                     </div>
                   </div>
@@ -287,7 +287,7 @@ export default function WhitelistPage() {
                   <div className="p-6 rounded-lg border-2" style={{ borderColor: '#41a290', backgroundColor: '#ffffff' }}>
                     <h3 className="font-semibold mb-4" style={{ color: '#13493f' }}>Important Notes</h3>
                     <ul className="space-y-2 text-sm text-gray-600">
-                      <li>•	<strong>Beta Disclaimer:</strong> This is a testing environment only. No real funds. Tokens, trades, and balances are simulated for demonstration purposes only</li>
+                      <li>•	<strong>Beta Disclaimer:</strong> This is a Test Environment — tokens, trades & balances are simulated for demonstration purposes.</li>
                       <li>•	<strong>Privacy:</strong> Real names not required. ENS, alias, or wallet nickname is fine.</li>
                       <li>•	<strong>Jurisdiction:</strong> Certain features may be restricted by location under applicable laws.</li>
                     </ul>
@@ -313,16 +313,6 @@ export default function WhitelistPage() {
           {/* Footer */}
           <div className="text-center mt-12 text-gray-600">
             <p className="mb-4">Questions? Contact us at <a href="mailto:whitelist@w3-energy.org" className="hover:underline" style={{ color: '#41a290' }}>whitelist@w3-energy.org</a></p>
-            
-            <div className="flex justify-center space-x-4 text-sm">
-              <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Telegram</a>
-              <span className="text-gray-400">|</span>
-              <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Twitter</a>
-              <span className="text-gray-400">|</span>
-              <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Medium</a>
-              <span className="text-gray-400">|</span>
-              <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Docs</a>
-            </div>
           </div>
         </div>
       </div>
