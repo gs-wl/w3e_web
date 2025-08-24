@@ -95,24 +95,34 @@ export default function WhitelistPage() {
                   <div className="p-4 rounded-lg" style={{ backgroundColor: '#f0fdfa' }}>
                     <h3 className="font-semibold mb-2" style={{ color: '#13493f' }}>What happens next?</h3>
                     <ul className="text-sm space-y-2" style={{ color: '#13493f' }}>
-                      <li>• Our team will review your application within 48 hours</li>
-                      <li>• You&apos;ll receive an email notification about your status</li>
-                      <li>• Approved wallets will gain immediate access to the platform</li>
-                      <li>• You can check your status anytime by connecting your wallet</li>
+                      <li>•	Our team will review your application within 48 hours.</li>
+                      <li>•	Approved wallets will gain access once verified.</li>
+                      <li>•	You can check your status anytime by connecting your wallet.</li>
+                      <li>•	If you provided an email, you'll also receive a notification when your status changes.</li>
                     </ul>
                   </div>
                 </div>
 
                 <div className="mt-8 pt-6 border-t" style={{ borderColor: '#41a290' }}>
                   <Button
-                    onClick={() => window.location.href = '/'}
-                    className="text-white px-8 py-3"
+                    onClick={() => window.location.href = 'https://w3-energy.org/'}
+                    className="text-white px-8 py-3 mb-6"
                     style={{ backgroundColor: '#13493f' }}
                     onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#0f3d35'}
                     onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#13493f'}
                   >
-                    Visit W3-Energy.org
+                    — Return to Homepage
                   </Button>
+                  
+                  <div className="flex justify-center space-x-4 text-sm">
+                    <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Telegram</a>
+                    <span className="text-gray-400">|</span>
+                    <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Twitter</a>
+                    <span className="text-gray-400">|</span>
+                    <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Medium</a>
+                    <span className="text-gray-400">|</span>
+                    <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Docs</a>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -129,35 +139,31 @@ export default function WhitelistPage() {
           {/* Back Button */}
           <div className="mb-8">
             <Button
-              onClick={() => window.open('https://w3-energy.org', '_blank')}
+              onClick={() => window.location.href = 'https://w3-energy.org/'}
               variant="outline"
               className="hover:bg-teal-50"
               style={{ borderColor: '#41a290', color: '#13493f' }}
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Visit W3-Energy.org
+              Return to Homepage
             </Button>
           </div>
 
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="flex items-center justify-center space-x-3 mb-6">
+            <div className="mb-6">
               <Image 
                 src="/logo/logo.png" 
                 alt="W3-Energy Logo" 
-                width={60} 
-                height={60} 
-                className="h-15 w-15"
+                width={120} 
+                height={120} 
+                className="w-30 h-30 object-contain mx-auto mb-4"
               />
-              <h1 className="text-4xl font-bold text-gray-900">W3-Energy</h1>
+              <h1 className="text-5xl font-bold text-gray-900 leading-none">Get Whitelisted</h1>
             </div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              Be first in line for the future of energy
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              Limited spots. Approved Wallets Only
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-              Our platform is currently in beta — access is limited to approved wallets only. 
-              Get whitelisted below to secure early access to the W3-Energy on-chain ecosystem.
-            </p>
           </div>
 
           {/* Wallet Connection Status */}
@@ -195,9 +201,9 @@ export default function WhitelistPage() {
                   <div>
                     <label className="flex items-center space-x-2 text-sm font-medium text-gray-700 mb-2">
                       <User className="h-4 w-4" />
-                      <span>Preferred Nickname or ENS Domain</span>
+                      <span>ENS / Nickname</span>
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Optional — use your Web3 identity or create an alias</p>
+                    <p className="text-xs text-gray-500 mb-2">Use your ENS or an alias</p>
                     <Input
                       name="nickname"
                       value={formData.nickname}
@@ -212,9 +218,9 @@ export default function WhitelistPage() {
                   <div>
                     <label className="flex items-center space-x-2 text-sm font-medium text-gray-700 mb-2">
                       <Mail className="h-4 w-4" />
-                      <span>Email Address *</span>
+                      <span>Email Address</span>
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Must match the one you register with on the platform for early access</p>
+                    <p className="text-xs text-gray-500 mb-2">Add your email to receive early‑access updates and rewards notifications.</p>
                     <Input
                       name="email"
                       type="email"
@@ -240,7 +246,7 @@ export default function WhitelistPage() {
                           className="w-4 h-4 rounded border-2"
                           style={{ accentColor: '#13493f' }}
                         />
-                        <span className="text-sm" style={{ color: '#13493f' }}>Yes, I'd like to participate in pre-launch/airdrops</span>
+                        <span className="text-sm" style={{ color: '#13493f' }}>☑ Pre-launch / Airdrops</span>
                       </label>
                       <label className="flex items-center space-x-3">
                         <input
@@ -251,7 +257,7 @@ export default function WhitelistPage() {
                           className="w-4 h-4 rounded border-2"
                           style={{ accentColor: '#13493f' }}
                         />
-                        <span className="text-sm" style={{ color: '#13493f' }}>Yes, I'd like to join competitions & referral challenges</span>
+                        <span className="text-sm" style={{ color: '#13493f' }}>☑ Competitions & Referrals</span>
                       </label>
                       <label className="flex items-center space-x-3">
                         <input
@@ -262,7 +268,7 @@ export default function WhitelistPage() {
                           className="w-4 h-4 rounded border-2"
                           style={{ accentColor: '#13493f' }}
                         />
-                        <span className="text-sm" style={{ color: '#13493f' }}>Yes, I'm interested in the bug bounty program</span>
+                        <span className="text-sm" style={{ color: '#13493f' }}>☑ Bug Bounty Program</span>
                       </label>
                     </div>
                   </div>
@@ -270,21 +276,20 @@ export default function WhitelistPage() {
                   <div className="p-6 rounded-lg" style={{ backgroundColor: '#f0fdfa' }}>
                     <h3 className="font-semibold mb-4" style={{ color: '#13493f' }}>Platform Benefits</h3>
                     <ul className="space-y-2 text-sm" style={{ color: '#13493f' }}>
-                      <li>• <strong>Exclusive Access to RWA Energy Tokens</strong> – Invest in tokenized clean energy assets before public launch.</li>
-                      <li>• <strong>Early Investor Advantages</strong> – Priority allocations, bonus rewards, and pre-sale pricing.</li>
-                      <li>• <strong>Sustainable Investment Opportunities</strong> – Back projects driving the global energy transition.</li>
-                      <li>• <strong>Reduced Fees for Beta Users</strong> – Enjoy discounted transaction and platform fees during beta.</li>
-                      <li>• <strong>Real-World Climate Impact</strong> – Directly fund and track verified renewable energy and carbon credit projects.</li>
-                      <li>• <strong>Participatory Governance</strong> – Shape platform decisions through community voting rights.</li>
+                      <li>•	<strong>Tokenized Asset Access</strong> – Interact with tokenized assets before public release.</li>
+                      <li>•	<strong>Priority Participation</strong> – Early users may receive allocations within the platform.</li>
+                      <li>•	<strong>Discounted Fees</strong> – Reduced transaction and protocol fees during beta.</li>
+                      <li>•	<strong>Support Climate Startups</strong> – Contribute to renewable energy and carbon credit initiatives at an early stage.</li>
+                      <li>•	<strong>Governance Rights</strong> – Take part in community discussions and voting.</li>
                     </ul>
                   </div>
 
                   <div className="p-6 rounded-lg border-2" style={{ borderColor: '#41a290', backgroundColor: '#ffffff' }}>
                     <h3 className="font-semibold mb-4" style={{ color: '#13493f' }}>Important Notes</h3>
                     <ul className="space-y-2 text-sm text-gray-600">
-                      <li>• <strong>Beta Disclaimer:</strong> This is a testing environment. No real funds will be used in the demo. All tokens, trades, and balances are simulated for demonstration purposes only.</li>
-                      <li>• <strong>Privacy:</strong> Real names are not required. Use your ENS, alias, or wallet nickname if preferred.</li>
-                      <li>• <strong>Jurisdiction:</strong> Some features may be restricted based on your location to comply with applicable laws.</li>
+                      <li>•	<strong>Beta Disclaimer:</strong> This is a testing environment only. No real funds. Tokens, trades, and balances are simulated for demonstration purposes only</li>
+                      <li>•	<strong>Privacy:</strong> Real names not required. ENS, alias, or wallet nickname is fine.</li>
+                      <li>•	<strong>Jurisdiction:</strong> Certain features may be restricted by location under applicable laws.</li>
                     </ul>
                   </div>
 
@@ -307,7 +312,17 @@ export default function WhitelistPage() {
 
           {/* Footer */}
           <div className="text-center mt-12 text-gray-600">
-            <p>Questions? Contact us at <a href="mailto:whitelist@w3-energy.org" className="hover:underline" style={{ color: '#41a290' }}>whitelist@w3-energy.org</a></p>
+            <p className="mb-4">Questions? Contact us at <a href="mailto:whitelist@w3-energy.org" className="hover:underline" style={{ color: '#41a290' }}>whitelist@w3-energy.org</a></p>
+            
+            <div className="flex justify-center space-x-4 text-sm">
+              <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Telegram</a>
+              <span className="text-gray-400">|</span>
+              <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Twitter</a>
+              <span className="text-gray-400">|</span>
+              <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Medium</a>
+              <span className="text-gray-400">|</span>
+              <a href="#" className="hover:underline" style={{ color: '#41a290' }}>Docs</a>
+            </div>
           </div>
         </div>
       </div>
