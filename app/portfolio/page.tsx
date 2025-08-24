@@ -1,12 +1,12 @@
 'use client'
 
 import { PortfolioPage } from '@/components/portfolio-page'
-import { WhitelistGuard } from '@/components/whitelist-guard'
+import { AppAccessGuard } from '@/components/app-access-guard'
 
 export default function Portfolio() {
   return (
-    <WhitelistGuard>
+    <AppAccessGuard>
       <PortfolioPage />
-    </WhitelistGuard>
+    </AppAccessGuard>
   )
 }

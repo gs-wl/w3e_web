@@ -1,12 +1,12 @@
 'use client'
 
 import { Web3W3EPlatform } from '@/components'
-import { WhitelistGuard } from '@/components/whitelist-guard'
+import { AppAccessGuard } from '@/components/app-access-guard'
 
 export default function InvestRoute() {
   return (
-    <WhitelistGuard>
+    <AppAccessGuard>
       <Web3W3EPlatform activeTab="invest" />
-    </WhitelistGuard>
+    </AppAccessGuard>
   )
 }

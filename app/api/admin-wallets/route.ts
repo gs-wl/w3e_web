@@ -29,7 +29,8 @@ export async function GET() {
     }
 
     // Return in the same format as the old JSON file for compatibility
-    const adminAddresses = adminWallets.map(wallet => wallet.address);
+    // Trim addresses to remove any whitespace/newlines
+    const adminAddresses = adminWallets.map(wallet => wallet.address.trim());
     
     return NextResponse.json({
       adminAddresses,

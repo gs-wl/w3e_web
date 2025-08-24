@@ -42,6 +42,7 @@ export function useAdmin() {
         console.log('  - isConnected:', isConnected);
         console.log('  - address:', address);
         console.log('  - admin addresses:', adminList.adminAddresses);
+        console.log('  - admin addresses count:', adminList.adminAddresses.length);
         console.log('  - timestamp:', new Date().toISOString());
         
         if (!isConnected || !address) {
@@ -58,6 +59,12 @@ export function useAdmin() {
         
         console.log('  - Address (lowercase):', lowerCaseAddress);
         console.log('  - Admin list (lowercase):', lowerCaseAdminList);
+        console.log('  - Address in list check:', lowerCaseAdminList.includes(lowerCaseAddress));
+        console.log('  - Individual checks:');
+        lowerCaseAdminList.forEach((adminAddr, index) => {
+          const matches = adminAddr === lowerCaseAddress;
+          console.log(`    ${index + 1}. "${adminAddr}" === "${lowerCaseAddress}" -> ${matches}`);
+        });
         console.log('  - Is Admin:', isAddressAdmin);
         
         setIsAdmin(isAddressAdmin);
@@ -74,8 +81,17 @@ export function useAdmin() {
   }, [address, isConnected, refreshTrigger]);
 
   const refreshAdminStatus = () => {
+    console.log('🔄 Manually refreshing admin status...');
     setRefreshTrigger(prev => prev + 1);
   };
+
+  // Force refresh when address changes
+  useEffect(() => {
+    if (address) {
+      console.log('👤 Address changed, forcing admin refresh:', address);
+      setRefreshTrigger(prev => prev + 1);
+    }
+  }, [address]);
 
   return {
     isAdmin,

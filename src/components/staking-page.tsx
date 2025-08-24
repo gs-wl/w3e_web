@@ -30,6 +30,7 @@ import {
 import { useAggregatedUserStakes } from '@/hooks/useStakesData';
 import Image from 'next/image';
 import { useStakesPreferences, useAutoRefresh } from '@/hooks/useStakesPreferences';
+import { useAdmin } from '@/hooks/useAdmin';
 import { useUserRewards } from '@/hooks/useRewardsData';
 import { RewardsRow } from '@/components/rewards/RewardsRow';
 import { RewardsMobileCard } from '@/components/rewards/RewardsMobileCard';
@@ -99,10 +100,14 @@ const StakingPage = () => {
   const contractOwner = useContractOwner();
   const contractPaused = useContractPaused();
   const emergencyWithdrawFee = useEmergencyWithdrawFee();
+  const { isAdmin } = useAdmin();
 
   // Check if current user is the contract owner
   const isOwner = Boolean(address && contractOwner.data &&
     address.toLowerCase() === (contractOwner.data as string).toLowerCase());
+
+  // Allow admin access for both contract owner and general admins
+  const hasAdminAccess = isOwner || isAdmin;
 
   // Network check
   const currentNetwork = getCurrentNetworkConfig();
@@ -465,7 +470,7 @@ const StakingPage = () => {
           >
             Rewards
           </button>
-          {isOwner && (
+          {hasAdminAccess && (
             <button
               onClick={() => setTab('admin')}
               className={`py-2 px-1 border-b-2 font-medium text-sm whitespace-nowrap transition-colors
@@ -726,7 +731,7 @@ const StakingPage = () => {
         </div>
       )}
 
-      {tab === 'admin' && isOwner && (
+      {tab === 'admin' && hasAdminAccess && (
         <AdminPanel
           contractPaused={contractPaused.data as boolean}
           emergencyWithdrawFee={emergencyWithdrawFee.data as bigint}
@@ -1941,10 +1946,15 @@ const AdminPanel = ({ contractPaused, emergencyWithdrawFee, allPools, isConnecte
           <div>
             <h2 className="text-xl font-bold text-gray-900 dark:text-white">Admin Panel</h2>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Contract Owner Access - Manage staking pools and contract settings
+              {isOwner ? 'Contract Owner Access - Manage staking pools and contract settings' : 'Admin View - Monitor staking pools and contract status'}
             </p>
           </div>
-          <div className="ml-auto">
+          <div className="ml-auto flex items-center gap-3">
+            {!isOwner && (
+              <div className="px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                👁️ View Only
+              </div>
+            )}
             <div className={`px-3 py-1 rounded-full text-sm font-medium ${contractPaused
               ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
               : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
@@ -1954,6 +1964,21 @@ const AdminPanel = ({ contractPaused, emergencyWithdrawFee, allPools, isConnecte
           </div>
         </div>
       </div>
+
+      {/* Non-Owner Warning */}
+      {!isOwner && (
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 text-blue-600 dark:text-blue-400">ℹ️</div>
+            <div>
+              <h3 className="font-semibold text-blue-800 dark:text-blue-200">Admin View Mode</h3>
+              <p className="text-sm text-blue-700 dark:text-blue-300">
+                You have admin access to view contract information, but only the contract owner can execute management functions.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Status Messages */}
       {(error || success || pendingTx) && (
@@ -2341,8 +2366,15 @@ const AdminPanel = ({ contractPaused, emergencyWithdrawFee, allPools, isConnecte
       {activeSection === 'pools' && (
         <div className="space-y-8">
           {/* Add New Pool */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Add New Pool</h3>
+          <div className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 ${!isOwner ? 'opacity-60' : ''}`}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Add New Pool</h3>
+              {!isOwner && (
+                <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                  Owner Only
+                </span>
+              )}
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -2417,7 +2449,7 @@ const AdminPanel = ({ contractPaused, emergencyWithdrawFee, allPools, isConnecte
             </div>
             <button
               onClick={handleAddPool}
-              disabled={isLoading('addPool') || !!pendingTx}
+              disabled={!isOwner || isLoading('addPool') || !!pendingTx}
               className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50"
             >
               {isLoading('addPool') || pendingTx?.type === 'addPool' ? (
@@ -2432,8 +2464,15 @@ const AdminPanel = ({ contractPaused, emergencyWithdrawFee, allPools, isConnecte
           </div>
 
           {/* Update Pool */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Update Pool</h3>
+          <div className={`bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 ${!isOwner ? 'opacity-60' : ''}`}>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Update Pool</h3>
+              {!isOwner && (
+                <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                  Owner Only
+                </span>
+              )}
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -2542,7 +2581,7 @@ const AdminPanel = ({ contractPaused, emergencyWithdrawFee, allPools, isConnecte
             </div>
             <button
               onClick={handleUpdatePool}
-              disabled={isLoading('updatePool') || !!pendingTx}
+              disabled={!isOwner || isLoading('updatePool') || !!pendingTx}
               className="mt-4 bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors disabled:opacity-50"
             >
               {isLoading('updatePool') || pendingTx?.type === 'updatePool' ? (
