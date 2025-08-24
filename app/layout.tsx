@@ -46,6 +46,21 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/logo/favicon.png" />
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-V182YLWBQV"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-V182YLWBQV');
+            `,
+          }}
+        />
+        {/* Start of HubSpot Embed Code */}
+        <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/243507438.js"></script>
+        {/* End of HubSpot Embed Code */}
       </head>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         <ThemeProvider>
