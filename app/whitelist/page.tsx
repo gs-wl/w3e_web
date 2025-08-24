@@ -218,15 +218,14 @@ export default function WhitelistPage() {
                   <div>
                     <label className="flex items-center space-x-2 text-sm font-medium text-gray-700 mb-2">
                       <Mail className="h-4 w-4" />
-                      <span>Email Address</span>
+                      <span>Email Address (Optional)</span>
                     </label>
-                    <p className="text-xs text-gray-500 mb-2">Add your email to receive early‑access updates and rewards notifications.</p>
+                    <p className="text-xs text-gray-500 mb-2">Add your email to receive early‑access updates and rewards notifications (optional).</p>
                     <Input
                       name="email"
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      required
                       placeholder="Enter your email address"
                       style={{ borderColor: '#41a290', backgroundColor: '#ffffff', color: '#13493f' }}
                       onFocus={(e) => (e.target as HTMLInputElement).style.borderColor = '#13493f'}
